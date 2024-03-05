@@ -1,0 +1,18 @@
+@import 'abstract/functions';
+@import 'abstract/mixins';
+@import 'abstract/variables';
+
+@import 'base/base';
+@import 'base/animations';
+@import 'base/utils';
+@import 'base/typography';
+
+@import 'components/topNav';
+@import 'components/image';
+@import 'components/header';
+@import 'components/screens';
+
+@import 'screens/about';
+@import 'screens/home';
+@import 'screens/portfolio';
+@import 'screens/contact';

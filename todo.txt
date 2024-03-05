@@ -1,0 +1,24 @@
+Home
+
+About
+
+Portfolio
+
+Shop
+
+contact
+(no email yet)
+
+instagram style (squares of images, very visual simple clean)
+
+photos
+same size or 2 or 3 set sizes
+ similar background color
+
+
+ start server
+ nodemon app.js
+ npm run build:watch
+
+ 
+

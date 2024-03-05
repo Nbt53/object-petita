@@ -1,0 +1,21 @@
+.about {
+
+    h2 {
+        padding-left: 2rem;
+    }
+
+    padding: 2rem;
+
+    &-image {
+        display: inline-block;
+        width: 40%;
+        background-color: $color-secondary-1;
+        padding: 2rem;
+
+        &__container {
+            display: flex;
+            text-align: center;
+            margin-top: 2rem;
+        }
+    }
+}

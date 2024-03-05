@@ -1,0 +1,47 @@
+body {
+    color: $color-grey-dark-3;
+}
+
+button {
+    color: $color-grey-dark-2;
+    font-size: 1.8rem;
+    text-decoration: unset;
+    background-color: unset;
+    border: unset;
+    cursor: pointer;
+}
+
+p {
+    font-family: $font-body;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+h2 {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 200;
+    letter-spacing: 2px;
+}
+
+.header {
+    &-title {
+        font-family: 'Urbanist', sans-serif;
+        font-size: 5rem;
+        font-weight: 200;
+        max-width: 23rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-align: end;
+    }
+
+}
+
+.screen-title {
+    font-family: $font-title;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 2.4rem;
+}

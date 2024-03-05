@@ -1,0 +1,72 @@
+.image {
+    width: 100%;
+    height: 100%;
+
+    &-bar {
+        width: 100%;
+        display: flex;
+    }
+
+    &-container {
+        background-color: $color-secondary-1;
+        flex: 1;
+    }
+
+    &-display {
+        width: 20rem;
+    }
+
+    &-frame {
+        display: inline-block;
+        padding: 2rem;
+    }
+
+    &-display-2 {
+        display: inline-block;
+        width: 20rem;
+    }
+
+    &-frame-2 {
+        position: relative;
+        display: inline-block;
+
+        &::after {
+            content: ' ';
+            position: absolute;
+            top: 1rem;
+            left: 0.9rem;
+            width: 18rem;
+            height: 15rem;
+        }
+    }
+
+    &-display-3 {
+        display: inline-block;
+        width: 20rem;
+        box-shadow: 1px 1px 1px 1px black;
+    }
+
+    &-display-4 {
+        display: inline-block;
+        width: 20rem;
+
+    }
+
+    &-frame-4 {
+        padding: 1.5rem;
+        box-shadow: 1px 1px 1px 1px black;
+    }
+
+    &-frame-4-inner {
+        padding: .6rem;
+        box-shadow: inset 1px 1px 1px 1px black;
+    }
+}
+
+.home {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 10rem;
+}

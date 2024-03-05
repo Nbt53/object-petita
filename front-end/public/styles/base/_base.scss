@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: $font-body;
+    font-size: 62.5%;
+    margin: 2rem;
+}
+
+body {
+    box-sizing: border-box;
+    min-height: 100vh;
+    background-color: $color-primary-1;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
