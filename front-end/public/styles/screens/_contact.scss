@@ -1,0 +1,67 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    font-family: $font-body;
+    width: 18rem;
+    height: 30rem;
+    justify-content: space-around;
+
+    ion-icon {
+        font-size: 1.2rem;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        font-family: $font-body;
+        color: $color-grey-dark-3;
+        text-transform: capitalize;
+    }
+
+    &-link {
+        color: $color-grey-dark-4;
+        margin-left: 2rem;
+        font-size: 1.2rem;
+        text-decoration: none;
+    }
+
+    &-input {
+        padding: 0.5rem 1rem;
+        border-radius: 30px;
+        border: unset;
+        font-family: $font-body;
+        color: $color-grey-dark-3;
+    }
+
+    &-textarea {
+        padding: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        border: unset;
+        font-family: $font-body;
+        color: $color-grey-dark-3;
+    }
+
+    &-submit {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &-button {
+        padding: 0.5rem 2rem;
+        border-radius: 30px;
+        border: 1px solid $color-grey-dark-1;
+        color: $color-grey-dark-3;
+        background-color: unset;
+        font-size: 1.2rem;
+        font-weight: bold;
+        font-family: $font-body;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        backface-visibility: hidden;
+
+        // &:hover {
+        //     transform: scale(1.1);
+        //     text-shadow: 0 0 5px rgba($color-grey-dark-3, 0.5);
+        // }
+    }
+}

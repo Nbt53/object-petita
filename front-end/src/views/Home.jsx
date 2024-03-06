@@ -1,3 +1,4 @@
+import Slideshow from "../components/Slideshow";
 import ViewTitle from "../components/ViewTitle";
 
 export default function Home() {
@@ -5,6 +6,8 @@ export default function Home() {
     return (
         <section className="screen-container">
             <ViewTitle title={'Big Art Girl'} />
+
+            <Slideshow />
             <div className="home-text-container">
                 <p className="home-text mb-medium">
                     Welcome to object petita Ceramic Studio, where art meets introspection in a unique exploration of

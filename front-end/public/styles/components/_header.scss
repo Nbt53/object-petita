@@ -1,9 +1,27 @@
 .header {
+    position: sticky;
+    top: 0;
     width: 20rem;
+    height: 100%;
     display: flex;
     flex-direction: column;
     border-right: 2px solid black;
-    align-items: end;
     padding-right: 2rem;
+
+    &-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        justify-content: space-between;
+    }
+
+
+    &-title {
+
+        &__container {
+            cursor: pointer;
+        }
+    }
 
 }

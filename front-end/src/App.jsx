@@ -18,14 +18,15 @@ function App() {
       case 'portfolio':
         return <Portfolio />;
       default:
-        return <Home />; 
+        return <Home />;
     }
   };
 
   return (
     <div className={'wrapper'}>
-      <Title renderView={renderView} setCurrentView={setCurrentView}/>
+      <Title renderView={renderView} setCurrentView={setCurrentView} currentView={currentView} />
       {renderView(currentView)}
+
     </div>
   );
 }

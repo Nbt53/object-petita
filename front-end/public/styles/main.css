@@ -87,9 +87,8 @@ h2 {
   align-items: end;
   letter-spacing: 1px;
 }
-.nav-top__link:focus {
-  -webkit-text-decoration: solid underline;
-          text-decoration: solid underline;
+.nav-top__link.active {
+  text-decoration: underline;
 }
 .nav-top__link:not(:last-child) {
   margin-bottom: 1rem;
@@ -157,16 +156,68 @@ h2 {
 }
 
 .header {
+  position: sticky;
+  top: 0;
   width: 20rem;
+  height: 100%;
   display: flex;
   flex-direction: column;
   border-right: 2px solid black;
-  align-items: end;
   padding-right: 2rem;
+}
+.header-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-between;
+}
+.header-title__container {
+  cursor: pointer;
 }
 
 .screen-container {
   padding: 1rem 0 0 2rem;
+  width: 100%;
+}
+
+.slideshow {
+  display: flex;
+  width: 100%;
+}
+.slideshow-container {
+  width: 100%;
+  height: 40rem;
+  overflow: hidden;
+  padding: 2.5rem 0;
+}
+.slideshow-image {
+  height: 35rem;
+  margin: 0 auto;
+  display: block;
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
+}
+.slideshow-image.fade-out {
+  opacity: 0;
+}
+.slideshow-image-container {
+  min-width: 100%;
+}
+
+ion-icon {
+  font-size: 2.5rem;
+  margin-left: 1rem;
+}
+
+.socials-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+.socials-wrapper__link {
+  margin-left: 1rem;
 }
 
 .about {
@@ -189,4 +240,66 @@ h2 {
 
 .home-text {
   line-height: 3rem;
+  width: 70%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  font-family: "Playfair Display", serif;
+  width: 18rem;
+  height: 30rem;
+  justify-content: space-around;
+}
+.form ion-icon {
+  font-size: 1.2rem;
+}
+.form input::-moz-placeholder, .form textarea::-moz-placeholder {
+  font-family: "Playfair Display", serif;
+  color: #495057;
+  text-transform: capitalize;
+}
+.form input::placeholder,
+.form textarea::placeholder {
+  font-family: "Playfair Display", serif;
+  color: #495057;
+  text-transform: capitalize;
+}
+.form-link {
+  color: #343a40;
+  margin-left: 2rem;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+.form-input {
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  border: unset;
+  font-family: "Playfair Display", serif;
+  color: #495057;
+}
+.form-textarea {
+  padding: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: unset;
+  font-family: "Playfair Display", serif;
+  color: #495057;
+}
+.form-submit {
+  display: flex;
+  justify-content: space-around;
+}
+.form-button {
+  padding: 0.5rem 2rem;
+  border-radius: 30px;
+  border: 1px solid #adb5bd;
+  color: #495057;
+  background-color: unset;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: "Playfair Display", serif;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  backface-visibility: hidden;
 }/*# sourceMappingURL=main.css.map */
