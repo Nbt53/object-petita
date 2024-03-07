@@ -243,6 +243,25 @@ ion-icon {
   width: 70%;
 }
 
+.portfolio {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.portfolio-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+.portfolio-image__container {
+  width: calc(25% - 2rem);
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ECE4DB;
+}
+
 .form {
   display: flex;
   flex-direction: column;

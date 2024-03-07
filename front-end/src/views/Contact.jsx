@@ -1,10 +1,24 @@
+import { useState } from "react";
 import ViewTitle from "../components/ViewTitle";
 
 export default function Contact() {
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Form submitted');
+    const [formValues, setFormValues] = useState({
+        name: '',
+        email: '',
+        message: ''
+    });
+
+    const handleChange = (event) => {
+        setFormValues({
+            ...formValues,
+            [event.target.name]: event.target.value
+        });
     };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(formValues);
+    }
 
     return (
         <section className="screen-container">
@@ -17,14 +31,14 @@ export default function Contact() {
                 </div>
                 <div className="form-info">
                     <ion-icon name="logo-instagram"></ion-icon>
-                    <a href="https://www.instagram.com/objectpetita_ceramics"  target="blank" className="form-link">@objectpetita_ceramics</a>
+                    <a href="https://www.instagram.com/objectpetita_ceramics" target="blank" className="form-link">@objectpetita_ceramics</a>
                 </div>
 
-                <input type="text" id="name" name="name" placeholder="Name" className="form-input" required />
+                <input onChange={handleChange} type="text" id="name" name="name" placeholder="Name" className="form-input" value={formValues.name} required />
 
-                <input type="email" id="email" name="email" placeholder="E-mail" className="form-input" required />
+                <input onChange={handleChange} type="email" id="email" name="email" placeholder="E-mail" className="form-input" value={formValues.email} required />
 
-                <textarea id="message" name="message" placeholder="Message" className="form-textarea" required></textarea>
+                <textarea onChange={handleChange} id="message" name="message" placeholder="Message" className="form-textarea" value={formValues.message} required></textarea>
                 <div className="form-submit">
                     <input type="submit" value="Submit" className="form-button" />
                 </div>

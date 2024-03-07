@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 export default function Slideshow() {
-    const [image, setImage] = useState('./images/mask-1.png');
-    const imageList = ['./images/mask-1.png', './images/plate-1.png', './images/plate-2.png']
+    const [image, setImage] = useState('./images/ceramics/mask-1.png');
+    const imageList = ['./images/ceramics/mask-1.png', './images/ceramics/plate-1.png', './images/ceramics/plate-2.png']
 
     const nextImage = () => {
         let index = imageList.indexOf(image);
