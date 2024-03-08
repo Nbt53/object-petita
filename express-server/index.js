@@ -24,6 +24,19 @@ app.get('/files', (req, res) => {
   });
 });
 
+app.get('/debug', (req, res) => {
+  const dirPath = path.join(__dirname, '../front-end/dist');
+  fs.readdir(dirPath, (err, files) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send({ error: err });
+    }
+
+    console.log(files);
+    res.send({ files });
+  });
+});
+
 //app.use(helmet.noSniff());
 // Your API routes or additional server logic can go here
 
