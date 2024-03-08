@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Serve Vite-built files as static
-app.use(express.static(path.join(__dirname, '../front-end/dist'), { index: 'index.html' }));
+app.use(express.static(path.join(__dirname, '../front-end/dist')));
 
 
 app.get('/files', (req, res) => {
