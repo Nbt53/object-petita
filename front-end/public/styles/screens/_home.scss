@@ -1,8 +1,14 @@
 .home {
+    display: flex;
+    flex-direction: row;
 
-    &-text{
+    &-text {
         line-height: 3rem;
-        width: 70%;
+
+        &-container {
+            width: 50%;
+        }
     }
-  
+
+    &-video {}
 }

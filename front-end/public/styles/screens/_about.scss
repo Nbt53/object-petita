@@ -1,21 +1,29 @@
 .about {
 
-    h2 {
-        padding-left: 2rem;
+    &-container {
+        font-family: $font-body;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
     }
 
-    padding: 2rem;
+    &-text {
+        font-size: 1.2rem;
 
-    &-image {
-        display: inline-block;
-        width: 40%;
-        background-color: $color-secondary-1;
-        padding: 2rem;
+        &-container {
+            padding: 0 2rem;
+        }
+    }
 
-        &__container {
-            display: flex;
-            text-align: center;
-            margin-top: 2rem;
+    &-list {
+        width: 100%;
+        text-align: center;
+        margin-top: 2rem;
+
+        &-item {
+            font-size: 1.2rem;
+            list-style: none;
         }
     }
 }

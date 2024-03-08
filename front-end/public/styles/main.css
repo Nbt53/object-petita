@@ -220,29 +220,38 @@ ion-icon {
   margin-left: 1rem;
 }
 
-.about {
-  padding: 2rem;
-}
-.about h2 {
-  padding-left: 2rem;
-}
-.about-image {
-  display: inline-block;
-  width: 40%;
-  background-color: #E8E8E4;
-  padding: 2rem;
-}
-.about-image__container {
+.about-container {
+  font-family: "Playfair Display", serif;
   display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.about-text {
+  font-size: 1.2rem;
+}
+.about-text-container {
+  padding: 0 2rem;
+}
+.about-list {
+  width: 100%;
   text-align: center;
   margin-top: 2rem;
 }
-
-.home-text {
-  line-height: 3rem;
-  width: 70%;
+.about-list-item {
+  font-size: 1.2rem;
+  list-style: none;
 }
 
+.home {
+  display: flex;
+  flex-direction: row;
+}
+.home-text {
+  line-height: 3rem;
+}
+.home-text-container {
+  width: 50%;
+}
 .portfolio {
   display: flex;
   flex-direction: row;
