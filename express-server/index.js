@@ -2,8 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const path = require('path');
 const fs = require('fs');
-// Supports weights 100-900
-
+const cors = require('cors');
 
 
 const app = express();
@@ -11,7 +10,7 @@ const PORT =  3000;
 
 // Serve Vite-built files as static
 app.use(express.static(path.join(__dirname, '../front-end/dist'), { index: 'index.html' }));
-
+app.use(cors());
 
 app.get('/files', (req, res) => {
   const dirPath = path.join(__dirname, '../front-end/dist/images/ceramics');
