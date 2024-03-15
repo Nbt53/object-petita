@@ -34,6 +34,9 @@ h2 {
         letter-spacing: 2px;
         text-transform: uppercase;
         text-align: end;
+        @include respond(tab-land) {
+           text-align: unset;
+        }
     }
 
 }

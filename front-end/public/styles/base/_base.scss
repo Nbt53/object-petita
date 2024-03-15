@@ -8,6 +8,17 @@ html {
     font-family: $font-body;
     font-size: 62.5%;
     margin: 2rem;
+
+    @include respond(tab-land) {
+        font-size: 54.5%;
+    }
+    @include respond(phone) {
+        font-size: 50%;
+    }
+    @include respond(phone-small) {
+        font-size: 45%;
+    }
+
 }
 
 body {
@@ -16,8 +27,11 @@ body {
     background-color: $color-primary-1;
 }
 
-.wrapper{
+.wrapper {
     display: flex;
     flex-direction: row;
     height: 100vh;
+    @include respond(tab-land) {
+        flex-direction: column;
+    }
 }

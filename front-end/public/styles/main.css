@@ -9,6 +9,21 @@ html {
   font-size: 62.5%;
   margin: 2rem;
 }
+@media (max-width: 75em) {
+  html {
+    font-size: 54.5%;
+  }
+}
+@media (max-width: 37.5em) {
+  html {
+    font-size: 50%;
+  }
+}
+@media (max-width: 31.25em) {
+  html {
+    font-size: 45%;
+  }
+}
 
 body {
   box-sizing: border-box;
@@ -20,6 +35,11 @@ body {
   display: flex;
   flex-direction: row;
   height: 100vh;
+}
+@media (max-width: 75em) {
+  .wrapper {
+    flex-direction: column;
+  }
 }
 
 .mb-small {
@@ -70,6 +90,11 @@ h2 {
   text-transform: uppercase;
   text-align: end;
 }
+@media (max-width: 75em) {
+  .header-title {
+    text-align: unset;
+  }
+}
 
 .screen-title {
   font-family: "'Urbanist', sans-serif";
@@ -87,11 +112,21 @@ h2 {
   align-items: end;
   letter-spacing: 1px;
 }
+@media (max-width: 75em) {
+  .nav-top {
+    flex-direction: row;
+  }
+}
 .nav-top__link.active {
   text-decoration: underline;
 }
 .nav-top__link:not(:last-child) {
   margin-bottom: 1rem;
+}
+@media (max-width: 75em) {
+  .nav-top__link {
+    margin: 1rem 1rem;
+  }
 }
 
 .image {
@@ -165,15 +200,49 @@ h2 {
   border-right: 2px solid black;
   padding-right: 2rem;
 }
+@media (max-width: 75em) {
+  .header {
+    width: 100%;
+    position: unset;
+    height: 20%;
+  }
+}
 .header-container {
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: end;
-  justify-content: space-between;
+}
+@media (max-width: 75em) {
+  .header-container {
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: unset;
+    width: 100%;
+  }
+}
+@media (max-width: 31.25em) {
+  .header-container {
+    flex-direction: column;
+  }
 }
 .header-title__container {
   cursor: pointer;
+}
+
+.socials-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: 5rem;
+}
+.socials-wrapper__link {
+  margin-left: 1rem;
+}
+@media (max-width: 75em) {
+  .socials-wrapper {
+    display: none;
+  }
 }
 
 .screen-container {
@@ -210,16 +279,6 @@ ion-icon {
   margin-left: 1rem;
 }
 
-.socials-wrapper {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-bottom: 5rem;
-}
-.socials-wrapper__link {
-  margin-left: 1rem;
-}
-
 .about-container {
   font-family: "Playfair Display", serif;
   display: flex;
@@ -246,12 +305,30 @@ ion-icon {
   display: flex;
   flex-direction: row;
 }
+@media (max-width: 75em) {
+  .home {
+    flex-direction: column;
+  }
+}
 .home-text {
   line-height: 3rem;
 }
 .home-text-container {
   width: 50%;
 }
+.home-video {
+  width: 360;
+  height: 600;
+}
+.home-video__container {
+  width: 100%;
+}
+@media (max-width: 75em) {
+  .home-video {
+    width: 100%;
+  }
+}
+
 .portfolio {
   display: flex;
   flex-direction: row;

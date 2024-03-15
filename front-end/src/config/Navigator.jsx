@@ -6,7 +6,7 @@ function Navigator({ renderView, setCurrentView, currentView }) {
         renderView(view);
     };
     return (
-        <div>
+        <>
             <div className="nav-top">
                 <button onClick={() => handleViewChange('home')} className={`nav-top__link ${currentView === 'home' ? 'active' : ''}`}>Home</button>
                 <button onClick={() => handleViewChange('portfolio')} className={`nav-top__link ${currentView === 'portfolio' ? 'active' : ''}`}>Portfolio</button>
@@ -14,7 +14,7 @@ function Navigator({ renderView, setCurrentView, currentView }) {
                 <button onClick={() => handleViewChange('contact')} className={`nav-top__link ${currentView === 'contact' ? 'active' : ''}`}>Contact</button>
             </div>
 
-        </div>
+        </>
     );
 }
 

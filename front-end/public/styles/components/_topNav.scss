@@ -6,6 +6,10 @@
     align-items: end;
     letter-spacing: 1px;
 
+    @include respond(tab-land) {
+        flex-direction: row;
+    }
+
     &__link {
         &.active {
             text-decoration: underline;
@@ -13,6 +17,10 @@
 
         &:not(:last-child) {
             margin-bottom: 1rem;
+        }
+
+        @include respond(tab-land) {
+            margin: 1rem 1rem;
         }
     }
 }

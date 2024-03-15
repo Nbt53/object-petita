@@ -8,20 +8,53 @@
     border-right: 2px solid black;
     padding-right: 2rem;
 
+    @include respond(tab-land) {
+        width: 100%;
+        position: unset;
+        height: 20%;
+    }
+
     &-container {
         height: 100%;
         display: flex;
         flex-direction: column;
         align-items: end;
-        justify-content: space-between;
+
+        @include respond(tab-land) {
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: unset;
+            width: 100%;
+
+        }
+        @include respond(phone-small) {
+            flex-direction: column;
+        }
     }
 
-
     &-title {
-
         &__container {
             cursor: pointer;
         }
     }
 
+}
+
+.socials {
+
+    &-wrapper {
+        display: flex;
+        align-items: center;
+        margin-top: auto;
+        margin-bottom: 5rem;
+
+        &__link {
+            margin-left: 1rem;
+        }
+
+        @include respond(tab-land) {
+            display: none;
+
+        }
+    }
 }

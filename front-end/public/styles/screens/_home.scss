@@ -2,6 +2,11 @@
     display: flex;
     flex-direction: row;
 
+    @include respond(tab-land) {
+        flex-direction: column;
+    }
+
+
     &-text {
         line-height: 3rem;
 
@@ -10,5 +15,16 @@
         }
     }
 
-    &-video {}
+    &-video {
+        width: 360;
+        height: 600;
+
+        &__container {
+            width: 100%;
+        }
+
+        @include respond(tab-land) {
+            width: 100%;
+        }
+    }
 }
