@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Title from "./components/Title";
 import About from "./views/About";
 import Contact from "./views/Contact";
 import Home from "./views/Home";
 import Portfolio from "./views/Portfolio";
 import { MediaQueryProvider } from "./config/MediaContext";
+import { testFirebase } from "./config/firebaseTest";
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
@@ -23,17 +24,25 @@ function App() {
     }
   };
 
+  // testFirebase()
+  useEffect(() => {
+    const storedView = localStorage.getItem('currentView');
+    if (storedView) {
+      setCurrentView(storedView);
+    }
+  }, []);
+
   return (
     <>
       <MediaQueryProvider>
-    <div className={'wrapper'}>
-      <Title renderView={renderView} setCurrentView={setCurrentView} currentView={currentView} />
-      {renderView(currentView)}
+        <div className={'wrapper'}>
+          <Title renderView={renderView} setCurrentView={setCurrentView} currentView={currentView} />
+          {renderView(currentView)}
 
-    </div>
-    </MediaQueryProvider>
+        </div>
+      </MediaQueryProvider>
     </>
-  
+
   );
 }
 

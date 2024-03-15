@@ -4,6 +4,7 @@ function Navigator({ renderView, setCurrentView, currentView }) {
     const handleViewChange = (view) => {
         setCurrentView(view);
         renderView(view);
+        localStorage.setItem('currentView', view);
     };
     return (
         <>
