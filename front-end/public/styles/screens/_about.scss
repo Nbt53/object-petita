@@ -5,14 +5,27 @@
         display: flex;
         flex-direction: row;
         width: 100%;
+        @include respond(phone-small) {
+            flex-direction: column;
+        }
 
     }
 
     &-text {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
 
         &-container {
             padding: 0 2rem;
+            @include respond(tab-land) {
+                margin-top: 2rem;
+                padding: unset;
+            }
+        }
+    }
+
+    &-img{
+        @include respond(tab-land) {
+            max-width: 100%; 
         }
     }
 

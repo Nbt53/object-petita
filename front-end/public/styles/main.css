@@ -14,16 +14,6 @@ html {
     font-size: 54.5%;
   }
 }
-@media (max-width: 37.5em) {
-  html {
-    font-size: 50%;
-  }
-}
-@media (max-width: 31.25em) {
-  html {
-    font-size: 45%;
-  }
-}
 
 body {
   box-sizing: border-box;
@@ -182,14 +172,6 @@ h2 {
   box-shadow: inset 1px 1px 1px 1px black;
 }
 
-.home {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 0 10rem;
-}
-
 .header {
   position: sticky;
   top: 0;
@@ -249,6 +231,11 @@ h2 {
   padding: 1rem 0 0 2rem;
   width: 100%;
 }
+@media (max-width: 75em) {
+  .screen-container {
+    padding: 1rem 0 0 0;
+  }
+}
 
 .slideshow {
   display: flex;
@@ -285,11 +272,27 @@ ion-icon {
   flex-direction: row;
   width: 100%;
 }
+@media (max-width: 31.25em) {
+  .about-container {
+    flex-direction: column;
+  }
+}
 .about-text {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 .about-text-container {
   padding: 0 2rem;
+}
+@media (max-width: 75em) {
+  .about-text-container {
+    margin-top: 2rem;
+    padding: unset;
+  }
+}
+@media (max-width: 75em) {
+  .about-img {
+    max-width: 100%;
+  }
 }
 .about-list {
   width: 100%;
@@ -304,10 +307,18 @@ ion-icon {
 .home {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  padding: 0 10rem;
 }
 @media (max-width: 75em) {
   .home {
     flex-direction: column;
+  }
+}
+@media (max-width: 31.25em) {
+  .home {
+    flex-direction: column;
+    padding: 0;
   }
 }
 .home-text {
@@ -315,6 +326,11 @@ ion-icon {
 }
 .home-text-container {
   width: 50%;
+}
+@media (max-width: 75em) {
+  .home-text-container {
+    width: 100%;
+  }
 }
 .home-video {
   width: 360;

@@ -2,5 +2,8 @@
     &-container {
         padding: 1rem 0 0 2rem;
         width: 100%;
+        @include respond(tab-land) {
+            padding: 1rem 0 0 0;
+        }
     }
 }

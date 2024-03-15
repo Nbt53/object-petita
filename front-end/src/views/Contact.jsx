@@ -1,5 +1,4 @@
 import { useState } from "react";
-import ViewTitle from "../components/ViewTitle";
 
 export default function Contact() {
     const [formValues, setFormValues] = useState({
@@ -22,7 +21,6 @@ export default function Contact() {
 
     return (
         <section className="screen-container">
-            <ViewTitle title={'contact me'} />
 
             <form className="form" onSubmit={handleSubmit}>
                 <div className="form-info">

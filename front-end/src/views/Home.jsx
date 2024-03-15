@@ -1,10 +1,8 @@
-import ViewTitle from "../components/ViewTitle";
 
 export default function Home() {
 
     return (
         <section className="screen-container">
-            <ViewTitle title={'Big Art Girl'} />
             <div className="home">
                 <div className="home-video__container">
                     <video width="360" height="600" className="home-video" autoPlay loop muted>

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import ViewTitle from "../components/ViewTitle";
-
 export default function Portfolio() {
     const [files, setFiles] = useState([]);
+    const [host, setHost] = useState("");
 
     useEffect(() => {
         fetch('http://localhost:3000/files')
@@ -11,18 +10,21 @@ export default function Portfolio() {
             .catch(error => console.error(error));
     }, []);
 
+    useEffect(() => {
+        setHost(window.location.hostname);
+    }, [host]);
     const renderImages = () => {
+
         return files.map((file, index) => {
             return (
                 <div key={index} className="portfolio-image__container">
-                    <img src={`http://localhost:3000/images/ceramics/${file}`} alt={file} className="portfolio-image" />
+                    <img src={`http://${host}:3000/images/ceramics/${file}`} alt={file} className="portfolio-image" />
                 </div>
             )
         });
     }
     return (
         <section className="screen-container">
-            <ViewTitle title={'Portfolio'} />
             <div className="portfolio">
                 {renderImages()}
             </div>
