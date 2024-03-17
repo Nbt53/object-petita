@@ -11,9 +11,9 @@ export default function User({ setCurrentView }) {
         setCurrentView('home');
     }
     const [formValues, setFormValues] = useState({
-        firstName: auth.currentUser.displayName.split(' ')[0],
-        lastName: auth.currentUser.displayName.split(' ')[1],
-        email: auth.currentUser.email,
+        firstName: auth.currentUser.displayName.split(' ')[0] || '',
+        lastName: auth.currentUser.displayName.split(' ')[1] || '',
+        email: auth.currentUser.email || '',
     });
 
     const handleChange = (event) => {
@@ -60,8 +60,8 @@ export default function User({ setCurrentView }) {
                         <ViewTitle title="Your Details" />
                     </div>
 
-                    <input onChange={handleChange} type="text" id="firstName" name="firstName" placeholder="Name" className="form-input" value={formValues.firstName} required />
-                    <input onChange={handleChange} type="text" id="lastName" name="lastName" placeholder="lastName" className="form-input" value={formValues.lastName} required />
+                    <input onChange={handleChange} type="text" id="firstName" name="firstName" placeholder="First Name" className="form-input" value={formValues.firstName} required />
+                    <input onChange={handleChange} type="text" id="lastName" name="lastName" placeholder="Last Name" className="form-input" value={formValues.lastName} required />
                     <input onChange={handleChange} type="email" id="email" name="email" placeholder="E-mail" className="form-input" value={formValues.email} required disabled />
 
                     <div className="form-submit">

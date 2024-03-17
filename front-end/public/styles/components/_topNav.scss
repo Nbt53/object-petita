@@ -1,10 +1,23 @@
 .nav-top {
-    position: sticky;
+    position: relative;
     font-family: 'Urbanist', serif;
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-items: end;
     letter-spacing: 1px;
+    justify-content: space-between;
+
+    &-links {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        letter-spacing: 1px;
+
+        @include respond(tab-land) {
+            flex-direction: row;
+        }
+    }
 
     @include respond(tab-land) {
         flex-direction: row;
@@ -21,6 +34,24 @@
 
         @include respond(tab-land) {
             margin: 1rem 1rem;
+        }
+    }
+
+    &-users {
+        display: flex;
+        margin-bottom: 2rem;
+
+        @include respond(tab-land) {
+            position: absolute;
+            top: 3rem;
+            right: 3rem;
+            flex-direction: column;
+        }
+    }
+
+    &-divider {
+        @include respond(tab-land) {
+            display: none;
         }
     }
 }

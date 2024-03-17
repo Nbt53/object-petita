@@ -6,7 +6,7 @@ const cors = require('cors');
 
 
 const app = express();
-const PORT =  3000;
+const PORT = 3000;
 
 // Serve Vite-built files as static
 app.use(express.static(path.join(__dirname, '../front-end/dist'), { index: 'index.html' }));
@@ -39,9 +39,13 @@ app.get('/debug', (req, res) => {
 //app.use(helmet.noSniff());
 // Your API routes or additional server logic can go here
 
-app.get('/', (req, res) => {
-  // Send the 'index.html' file from the static directory
-  res.sendFile(path.join(__dirname, '../', 'index.html'));
+app.get('*', (req, res) => {
+  // Send the 'index.html' file for all requests
+  res.sendFile(path.join(__dirname, '../', 'index.html'), (err) => {
+    if (err) {
+      console.log('express routing error: ' + err);
+    }
+  });
 });
 
 app.listen(PORT, () => {
