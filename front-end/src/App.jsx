@@ -5,7 +5,8 @@ import Contact from "./views/Contact";
 import Home from "./views/Home";
 import Portfolio from "./views/Portfolio";
 import { MediaQueryProvider } from "./config/MediaContext";
-import { testFirebase } from "./config/firebaseTest";
+import User from "./views/User";
+// import { testFirebase } from "./config/firebaseTest";
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
@@ -19,6 +20,8 @@ function App() {
         return <Contact />;
       case 'portfolio':
         return <Portfolio />;
+        case 'user':
+          return <User setCurrentView={setCurrentView}/>;
       default:
         return <Home />;
     }
