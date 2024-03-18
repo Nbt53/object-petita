@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { auth } from "../config/Auth"
+import { auth, signOut } from "../config/Auth"
 import ViewTitle from "../components/ViewTitle";
 import { deleteUser, updateProfile } from "firebase/auth";
 import { db } from "../config/Firebase";
 import { deleteDoc, doc, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
-export default function User({ setCurrentView }) {
+export default function User() {
+    const navigate = useNavigate();
     const userDoc = doc(db, 'users', auth.currentUser.uid);
-    if (!auth.currentUser) {
-        setCurrentView('home');
-    }
     const [formValues, setFormValues] = useState({
         firstName: auth.currentUser.displayName.split(' ')[0] || '',
         lastName: auth.currentUser.displayName.split(' ')[1] || '',
@@ -44,7 +43,7 @@ export default function User({ setCurrentView }) {
             if (confirmDelete === 'DELETE') {
                 await deleteUser(auth.currentUser).then(() => {
                     deleteDoc(userDoc)
-                    setCurrentView('home');
+                    navigate('/');
                 }).catch((error) => {
                     console.error(error);
                 });
@@ -69,6 +68,7 @@ export default function User({ setCurrentView }) {
                     </div>
                 </form>
                 <button value="Delete Profile" className="form-button form-button-delete" onClick={handleDeleteAccount} >Delete Account </button>
+                <button value="Sign Out" className="form-button form-button-signOut" onClick={() => signOut(navigate)} >Sign Out </button>
             </section>
         </>
     )

@@ -1,13 +1,16 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { signInWithGoogle, auth } from "../config/Auth";
+import { onAuthStateChanged } from "firebase/auth";
+import {  auth, signInWithGoogle } from "../config/Auth";
+import SignInForm from "./SignInForm";
 
 export function NavLinks() {
     const [currentUser, setCurrentUser] = useState(null);
+    const [showSignIn, setShowSignIn] = useState(false);
 
-    const handleSignIn = () => {
-        signInWithGoogle()
+   
+    const handleSignIn = async () => {
+       await signInWithGoogle()
             .then(() => {
 
             })
@@ -15,23 +18,18 @@ export function NavLinks() {
                 console.error('Error signing in:', error);
             });
     };
-    const handleSignOut = () => {
-        signOut(auth).then(() => {
-        }).catch((error) => {
-            console.log(error)
-        });
-    }
+
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setCurrentUser(user);
+                console.log(currentUser)
             } else {
                 setCurrentUser(null);
             }
         });
 
-        // Cleanup subscription on unmount
         return () => unsubscribe();
     }, []);
 
@@ -46,12 +44,11 @@ export function NavLinks() {
 
             <div className="nav-top-users">
                 {currentUser ?
-                    <NavLink to="#" activeClassName='no-underline' onClick={handleSignOut}>Sign Out</NavLink>
-                    : <NavLink to="#" activeClassName='no-underline' onClick={handleSignIn}>Sign In with Google</NavLink>}
-                {currentUser ? <p className="nav-top-divider"> | </p> : ''}
-                {currentUser ? <NavLink to="/user" className="nav-top__link">User</NavLink> : null}
-            </div>
+                    <NavLink to="/user" activeClassName='no-underline' ><ion-icon name="person"></ion-icon></NavLink>
+                    : <NavLink to="#" activeClassName='no-underline' onClick={handleSignIn}><ion-icon name="person-outline"></ion-icon></NavLink>}
 
+            </div>
+            {showSignIn ? <SignInForm setShowSignIn={setShowSignIn} /> : null}
         </div>
     );
 }

@@ -111,7 +111,6 @@ a {
 }
 
 .nav-top {
-  position: relative;
   font-family: "Urbanist", serif;
   display: flex;
   flex: 1;
@@ -233,6 +232,7 @@ a {
     width: 100%;
     position: unset;
     height: 20%;
+    border: unset;
   }
 }
 .header-container {
@@ -310,6 +310,29 @@ a {
 ion-icon {
   font-size: 2.5rem;
   margin-left: 1rem;
+}
+
+.sign-in {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  align-items: center;
+}
+.sign-in-form {
+  display: flex;
+  flex-direction: column;
+  background-color: #F8EDEB;
+  min-width: 40%;
+}
+.sign-in-form__close {
+  padding: 1rem;
+  align-self: end;
+  cursor: pointer;
 }
 
 .about-container {
