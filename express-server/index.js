@@ -8,8 +8,6 @@ const PORT = 3000;
 require('dotenv').config();
 
 app.use(express.static(path.join(__dirname, '../front-end/dist'), { index: 'index.html' }));
-app.use(cors());
-
 //middleware
 app.get('/isAdmin', (req, res) => {
   const { uid } = req.query;
