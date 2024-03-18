@@ -3,44 +3,25 @@ const helmet = require('helmet');
 const path = require('path');
 const fs = require('fs');
 const cors = require('cors');
-
-
 const app = express();
 const PORT = 3000;
+require('dotenv').config();
 
-// Serve Vite-built files as static
 app.use(express.static(path.join(__dirname, '../front-end/dist'), { index: 'index.html' }));
 app.use(cors());
 
-app.get('/files', (req, res) => {
-  const dirPath = path.join(__dirname, '../front-end/dist/images/ceramics');
-  fs.readdir(dirPath, (err, files) => {
-    if (err) {
-      return res.status(500).send({ error: err });
-    }
+//middleware
+app.get('/isAdmin', (req, res) => {
+  const { uid } = req.query;
 
-    res.send({ files });
-  });
+  if (uid === process.env.ADMIN_1 || uid === process.env.ADMIN_2) {
+    res.json({ isAdmin: true });
+  } else {
+    res.json({ isAdmin: false });
+  }
 });
-
-app.get('/debug', (req, res) => {
-  const dirPath = path.join(__dirname, '../front-end/dist');
-  fs.readdir(dirPath, (err, files) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send({ error: err });
-    }
-
-    console.log(files);
-    res.send({ files });
-  });
-});
-
-//app.use(helmet.noSniff());
-// Your API routes or additional server logic can go here
 
 app.get('*', (req, res) => {
-  // Send the 'index.html' file for all requests
   res.sendFile(path.join(__dirname, '../', 'index.html'), (err) => {
     if (err) {
       console.log('express routing error: ' + err);
