@@ -39,15 +39,11 @@ export default function Upload() {
         const updatedFormValues = { ...formValues, img: imgURL, imagePath: storageRef.fullPath };
         setFormValues(updatedFormValues);
         try {
-            const docRef = await addDoc(collection(db, 'portfolio'), updatedFormValues)
-            console.log("Document written with ID: ", docRef.id);
+            await addDoc(collection(db, 'portfolio'), updatedFormValues)
         } catch (e) {
             console.error('Error adding document: ', e);
         }
     }
-
-
-
     return (
         <div>
             <section className="screen-container">

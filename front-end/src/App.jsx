@@ -2,10 +2,11 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Title from "./components/Title";
 import Navigator from "./config/Navigator";
 import { useEffect } from "react";
-import { GoogleAuthProvider, getRedirectResult, onAuthStateChanged } from "firebase/auth";
+import { getRedirectResult, onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/Auth";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "./config/Firebase";
+import { AllProvider } from "../context/AllContext";
 
 
 function App() {
@@ -25,9 +26,6 @@ function App() {
       .then((result) => {
         if (result) {
           const user = result.user;
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          const token = credential.accessToken;
-
           setDoc(doc(db, 'users', user.uid), {
             admin: false,
             firstName: user.displayName.split(' ')[0] || '',
@@ -45,12 +43,17 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <div className={'wrapper'}>
-        <Title />
-        <Navigator />
-      </div>
-    </Router>
+
+    <AllProvider>
+      <Router>
+        <div className={'wrapper'}>
+          <Title />
+          <Navigator />
+        </div>
+      </Router>
+    </AllProvider>
+
+
   );
 }
 

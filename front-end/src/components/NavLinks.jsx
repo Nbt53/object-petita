@@ -24,7 +24,6 @@ export function NavLinks() {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setCurrentUser(user);
-                console.log(currentUser)
             } else {
                 setCurrentUser(null);
             }
