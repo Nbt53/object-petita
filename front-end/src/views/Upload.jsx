@@ -4,7 +4,7 @@ import { db, storage } from "../config/Firebase";
 import { addDoc, collection } from "firebase/firestore";
 
 export default function Upload() {
-    const [formValues, setFormValues] = useState({
+    const defaultFormValues = {
         name: '',
         img: '',
         price: '',
@@ -12,8 +12,12 @@ export default function Upload() {
         description: '',
         category: '',
         imagePath: '',
+        id: '',
         inShop: false,
-    });
+    }
+    const [formValues, setFormValues] = useState(defaultFormValues);
+    const [submitted, setSubmitted] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
 
     const handleChange = (event) => {
         setFormValues({
@@ -31,19 +35,41 @@ export default function Upload() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setSubmitting(true);
         const fileInput = document.getElementById('img');
         const file = fileInput.files[0];
         const storageRef = ref(storage, `images/${file.name}`);
         await uploadBytes(storageRef, file);
         const imgURL = await getDownloadURL(storageRef);
-        const updatedFormValues = { ...formValues, img: imgURL, imagePath: storageRef.fullPath };
+        const id = Math.random().toString(36).substring(7);
+        const updatedFormValues = { ...formValues, img: imgURL, imagePath: storageRef.fullPath, id: id };
         setFormValues(updatedFormValues);
         try {
             await addDoc(collection(db, 'portfolio'), updatedFormValues)
+            setFormValues(defaultFormValues);
+            setSubmitted(true);
+            setSubmitting(false);
         } catch (e) {
             console.error('Error adding document: ', e);
+            setSubmitting(false);
         }
     }
+
+    const handleAnother = () => {
+        setSubmitted(false);
+    }
+
+    if (submitted) {
+        return (
+            <div>
+                <section className="screen-container">
+                    <h1>Submitted</h1>
+                    <button className="form-button" onClick={handleAnother}>Submit another?</button>
+                </section>
+            </div>
+        )
+    }
+
     return (
         <div>
             <section className="screen-container">
@@ -54,10 +80,10 @@ export default function Upload() {
                     <input onChange={handleChange} type="text" id="category" name="category" placeholder="Category" className="form-input" value={formValues.category} required />
                     <input onChange={handleChange} type="date" id="date" name="date" placeholder="Date" className="form-input" value={formValues.date} required />
                     <input onChange={handleChange} type="number" id="price" name="price" placeholder="Price" className="form-input" value={formValues.price} required />
-                    <input onChange={handleChange} type="checkbox" id="inShop" name="inShop" placeholder="In Shop" className="form-input" value={formValues.inShop} required />
+                    <input onChange={handleChange} type="checkbox" id="inShop" name="inShop" placeholder="In Shop" className="form-input" value={formValues.inShop} />
                     <textarea onChange={handleChange} id="description" name="description" placeholder="description" className="form-textarea" value={formValues.description} required></textarea>
                     <div className="form-submit">
-                        <input type="submit" value="Submit" className="form-button" />
+                        <input type="submit" value="Submit" className="form-button" disabled={submitting} />
                     </div>
 
                 </form>
