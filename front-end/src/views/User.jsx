@@ -11,6 +11,9 @@ export default function User() {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const [formValues, setFormValues] = useState('')
+    if (!auth.currentUser) {
+        navigate('/');
+    }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -71,21 +74,27 @@ export default function User() {
         <>
 
             <section className="screen-container">
-                <form className="form" onSubmit={handleSubmit}>
-                    <div className="form-info">
-                        <ViewTitle title="Your Details" />
-                    </div>
+                <div className="form-container">
+                    <form className="form" onSubmit={handleSubmit}>
+                        <div className="form-info">
+                            <ViewTitle title="Your Details" />
+                        </div>
 
-                    <input onChange={handleChange} type="text" id="firstName" name="firstName" placeholder="First Name" className="form-input" value={formValues.firstName} required />
-                    <input onChange={handleChange} type="text" id="lastName" name="lastName" placeholder="Last Name" className="form-input" value={formValues.lastName} required />
-                    <input onChange={handleChange} type="email" id="email" name="email" placeholder="E-mail" className="form-input" value={formValues.email} required disabled />
+                        <input onChange={handleChange} type="text" id="firstName" name="firstName" placeholder="First Name" className="form-input" value={formValues.firstName} required />
+                        <input onChange={handleChange} type="text" id="lastName" name="lastName" placeholder="Last Name" className="form-input" value={formValues.lastName} required />
+                        <input onChange={handleChange} type="email" id="email" name="email" placeholder="E-mail" className="form-input" value={formValues.email} required disabled />
 
-                    <div className="form-submit">
-                        <input type="submit" value="Save" className="form-button" />
-                    </div>
-                </form>
-                <button value="Delete Profile" className="form-button form-button-delete" onClick={handleDeleteAccount} >Delete Account </button>
-                <button value="Sign Out" className="form-button form-button-signOut" onClick={() => signOut(navigate)} >Sign Out </button>
+                        <div className="form-submit">
+                            <input type="submit" value="Save" className="form-button" />
+                        </div>
+                    </form>
+                </div>
+
+                <div className="form-button__container">
+                    <button value="Delete Profile" className="form-button form-button-delete" onClick={handleDeleteAccount} >Delete Account </button>
+                    <button value="Sign Out" className="form-button form-button-signOut" onClick={() => signOut(navigate)} >Sign Out </button>
+                </div>
+
             </section>
         </>
     )

@@ -20,6 +20,8 @@
         display: flex;
         flex-direction: column;
         align-items: end;
+        background-position: center;
+        background-size: cover;
 
         @include respond(tab-land) {
             justify-content: space-between;

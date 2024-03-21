@@ -2,8 +2,11 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useState } from "react";
 import { db, storage } from "../config/Firebase";
 import { addDoc, collection } from "firebase/firestore";
+import { useAdmin } from "../../public/js/checkAdmin";
+import { auth } from "../config/Auth";
 
 export default function Upload() {
+    const [admin, loading] = useAdmin(auth);
     const defaultFormValues = {
         name: '',
         img: '',
@@ -18,6 +21,18 @@ export default function Upload() {
     const [formValues, setFormValues] = useState(defaultFormValues);
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
+
+    if (loading) return (<div>Loading...</div>);
+
+    if (!admin || !auth.currentUser) {
+        return (
+            <div>
+                <section className="screen-container">
+                    <h1>Not authorized</h1>
+                </section>
+            </div>
+        )
+    }
 
     const handleChange = (event) => {
         setFormValues({

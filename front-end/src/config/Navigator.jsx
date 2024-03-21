@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import Home from '../views/Home'; 
+import Home from '../views/Home';
 import Portfolio from '../views/Portfolio';
 import About from '../views/About';
 import Contact from '../views/Contact';
 import User from '../views/User';
 import Upload from "../views/Upload";
+import ImageView from "../views/ImageView";
 
 export function Navigator() {
     return (
@@ -15,6 +16,7 @@ export function Navigator() {
             <Route path="/user" element={<User />} />
             <Route path="/" element={<Home />} />
             <Route path="/upload" element={<Upload />} />
+            <Route path="/ImageView" element={<ImageView />} />
         </Routes>
     );
 }

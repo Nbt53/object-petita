@@ -4,13 +4,20 @@ import { useAdmin } from "../../public/js/checkAdmin";
 import { AllContext } from "../../context/AllContext";
 import { useContext } from "react";
 
-
 export default function Portfolio() {
+
+    const navigate = useNavigate()
     const [admin] = useAdmin(auth);
     const { portfolioData } = useContext(AllContext);
     const handlePress = (docData) => {
-        console.log(docData.id)
+        try {
+            navigate('/ImageView', { state: docData });
+        } catch (e) {
+            console.error('Error navigating to ImageView: ', e);
+        }
+
     }
+
 
     const renderPhotos = () => {
         if (Array.isArray(portfolioData)) {
