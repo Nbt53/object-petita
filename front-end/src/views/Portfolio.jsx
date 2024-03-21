@@ -1,5 +1,5 @@
 import { auth } from "../config/Auth"
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAdmin } from "../../public/js/checkAdmin";
 import { AllContext } from "../../context/AllContext";
 import { useContext } from "react";
@@ -35,10 +35,13 @@ export default function Portfolio() {
             });
         }
     }
+    const uploadNavigate = () => {
+        navigate('/upload');
+    }
     return (
         <section className="screen-container">
-            {admin ? <div className="portfolio-admin">
-                <NavLink to="/upload" className="nav-top__link portfolio-admin__text">+</NavLink>
+            {admin ? <div className="portfolio-admin" onClick={uploadNavigate}>
+
             </div> : null}
             <div className="portfolio">
 

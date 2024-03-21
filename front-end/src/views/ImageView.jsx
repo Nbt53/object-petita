@@ -55,8 +55,8 @@ export default function ImageView() {
         <section className="screen-container">
 
             <div className="image-view">
-                {admin ? <div className="portfolio-admin">
-                    <button onClick={adminButton} className="nav-top__link portfolio-admin__text">+</button>
+                {admin ? <div className="portfolio-admin" onClick={adminButton}>
+
                 </div> : null}
                 <img src={docData.img} alt={docData.name} className="image-view__image" />
                 <div className="image-view__text">

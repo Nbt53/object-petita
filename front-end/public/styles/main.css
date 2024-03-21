@@ -484,12 +484,7 @@ ion-icon {
   border-radius: 100%;
   text-align: center;
   justify-content: center;
-}
-.portfolio-admin__text {
-  padding: unset;
-  font-family: "Playfair Display", serif;
-  font-size: 1.2rem;
-  font-weight: 600;
+  cursor: pointer;
 }
 
 .form {
