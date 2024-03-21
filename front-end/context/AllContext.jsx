@@ -12,6 +12,7 @@ export const AllProvider = ({ children }) => {
             try {
                 const ref = await getDocs(collection(db, "portfolio"));
                 const documents = [];
+                
                 ref.forEach((doc) => {
                     const id = doc.id;
                     const artData = doc.data();

@@ -90,15 +90,15 @@ export default function Upload() {
             <section className="screen-container">
 
                 <form className="form" onSubmit={handleSubmit}>
-                    <input onChange={handleChange} type="text" id="name" name="name" placeholder="Name" className="form-input" value={formValues.name} required />
-                    <input onChange={handleChangeFile} type="file" id="img" name="img" placeholder="Image" className="form-input" required />
-                    <input onChange={handleChange} type="text" id="category" name="category" placeholder="Category" className="form-input" value={formValues.category} required />
-                    <input onChange={handleChange} type="date" id="date" name="date" placeholder="Date" className="form-input" value={formValues.date} required />
-                    <input onChange={handleChange} type="number" id="price" name="price" placeholder="Price" className="form-input" value={formValues.price} required />
-                    <input onChange={handleChange} type="checkbox" id="inShop" name="inShop" placeholder="In Shop" className="form-input" value={formValues.inShop} />
+                    <input onChange={handleChange} type="text" id="name" name="name" placeholder="Name" className="form-input mb-medium" value={formValues.name} required />
+                    <input onChange={handleChangeFile} type="file" id="img" name="img" placeholder="Image" className="form-input mb-medium" required />
+                    <input onChange={handleChange} type="text" id="category" name="category" placeholder="Category" className="form-input mb-medium" value={formValues.category} required />
+                    <input onChange={handleChange} type="date" id="date" name="date" placeholder="Date" className="form-input mb-medium" value={formValues.date} required />
+                    <input onChange={handleChange} type="number" id="price" name="price" placeholder="Price" className="form-input mb-medium" value={formValues.price} required />
+                    <input onChange={handleChange} type="checkbox" id="inShop" name="inShop" placeholder="In Shop" className="form-input mb-medium" value={formValues.inShop} />
                     <textarea onChange={handleChange} id="description" name="description" placeholder="description" className="form-textarea" value={formValues.description} required></textarea>
                     <div className="form-submit">
-                        <input type="submit" value="Submit" className="form-button" disabled={submitting} />
+                        <input type="submit" value="Submit" className="button" disabled={submitting} />
                     </div>
 
                 </form>

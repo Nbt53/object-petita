@@ -336,6 +336,32 @@ ion-icon {
   cursor: pointer;
 }
 
+.button {
+  padding: 0.5rem 2rem;
+  border-radius: 30px;
+  border: 1px solid #adb5bd;
+  color: #495057;
+  background-color: unset;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: "Playfair Display", serif;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  backface-visibility: hidden;
+}
+.button__container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 0 auto;
+}
+.button-delete {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+.button-edit {
+  margin-right: 2rem;
+}
+
 .about-container {
   font-family: "Playfair Display", serif;
   display: flex;
@@ -549,25 +575,46 @@ ion-icon {
   display: flex;
   justify-content: space-around;
 }
-.form-button {
-  padding: 0.5rem 2rem;
-  border-radius: 30px;
-  border: 1px solid #adb5bd;
-  color: #495057;
-  background-color: unset;
-  font-size: 1.2rem;
-  font-weight: bold;
-  font-family: "Playfair Display", serif;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  backface-visibility: hidden;
-}
-.form-button__container {
+
+.image-view {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  align-items: center;
   width: 100%;
-  margin: 0 auto;
+  height: 65rem;
 }
-.form-button-delete {
-  background-color: rgba(255, 0, 0, 0.5);
+@media (max-width: 31.25em) {
+  .image-view {
+    flex-direction: column;
+  }
+}
+.image-view__image {
+  max-width: 50rem;
+}
+@media (max-width: 31.25em) {
+  .image-view__image {
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+}
+.image-view__text {
+  border: 2px ridge black;
+  padding: 2rem;
+  max-width: 40%;
+  max-height: 100%;
+}
+@media (max-width: 31.25em) {
+  .image-view__text {
+    min-width: 100%;
+  }
+}
+.image-view__title {
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: underline;
+  margin-bottom: 2rem;
+}
+.image-view__body {
+  margin-bottom: 2rem;
 }/*# sourceMappingURL=main.css.map */

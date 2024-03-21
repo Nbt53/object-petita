@@ -52,7 +52,7 @@ export default function Contact() {
 
                     <textarea onChange={handleChange} id="message" name="message" placeholder="Message" className="form-textarea mb-medium" value={formValues.message} required></textarea>
                     <div className="form-submit">
-                        <input type="submit" value="Submit" className="form-button" />
+                        <input type="submit" value="Submit" className="button" />
                     </div>
 
                 </form>
