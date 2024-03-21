@@ -7,7 +7,7 @@ export default function Home() {
                 <div className="home-video__container">
                     <video width="360" height="600" className="home-video" autoPlay loop muted>
                         <source src="./images/videos/mother-video.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
+                        Your browser does not support the video tag. 
                     </video>
                 </div>
 

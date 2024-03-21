@@ -1,9 +1,9 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAdmin } from "../../public/js/checkAdmin";
 import { auth } from "../config/Auth";
 import { useState } from "react";
 import { db } from "../config/Firebase";
-import { collection, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { collection, deleteDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 
 export default function ImageView() {
     const location = useLocation();
@@ -12,6 +12,8 @@ export default function ImageView() {
     const [formTitle, setFormTitle] = useState(docData.name);
     const [formBody, setFormBody] = useState(docData.description);
     const [adminMode, setAdminMode] = useState(false);
+    const navigate = useNavigate();
+
 
     const handleTitleChange = (event) => {
         setFormTitle(event.target.value);
@@ -26,6 +28,19 @@ export default function ImageView() {
             const q = query(collection(db, "portfolio"), where("id", "==", docData.id));
             const querySnapshot = await getDocs(q);
             await Promise.all(querySnapshot.docs.map((doc) => updateDoc(doc.ref, { name: formTitle, description: formBody })));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    const handleDelete = async () => {
+        try {
+            const q = query(collection(db, "portfolio"), where("id", "==", docData.id));
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach(async (doc) => {
+                await deleteDoc(doc.ref);
+            });
+            navigate('/portfolio');
         } catch (e) {
             console.log(e);
         }
@@ -72,8 +87,7 @@ export default function ImageView() {
                     }
                     {adminMode ? <div className="image-view-admin">
                         <button className="button button-edit" onClick={handleEdit}>Edit</button>
-                        <button className="button button-delete">Delete</button>
-                    </div> : null}
+                        <button className="button button-delete" onClick={handleDelete}>Delete</button>                    </div> : null}
                 </div>
 
             </div>

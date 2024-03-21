@@ -2,7 +2,9 @@
     &-container {
         padding: 1rem 0 0 2rem;
         width: 100%;
-        @include respond(tab-land) {
+        position: relative;
+
+        @include respond(phone-small) {
             padding: 1rem 0 0 0;
         }
     }

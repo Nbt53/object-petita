@@ -27,13 +27,13 @@
     }
 
     &-admin {
-        position: relative;
+        position: absolute;
         display: flex;
-        width: 2rem;
-        height: 2rem;
+        width: 4rem;
+        height: 4rem;
         top: 0rem;
         right: 0rem;
-        background-color: rgba(white, 0.2);
+        background-color: rgba(red, 0.5);
         border-radius: 100%;
         text-align: center;
         justify-content: center;
