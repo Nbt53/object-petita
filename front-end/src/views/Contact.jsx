@@ -4,14 +4,6 @@ import { AllContext } from "../../context/AllContext";
 import ViewTile from "../components/ViewTitle";
 import formBG from '../../public/images/form-bg.jpg';
 export default function Contact() {
-    const { portfolioData } = useContext(AllContext);
-    let img
-    if (portfolioData.length > 0) {
-        const portfolioItems = portfolioData.map(item => Object.values(item)[0]);
-        const randomIndex = Math.floor(Math.random() * portfolioItems.length);
-        img = portfolioItems[randomIndex].img;
-
-    }
 
     const [formValues, setFormValues] = useState({
         name: '',
@@ -28,8 +20,24 @@ export default function Contact() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(formValues);
-    }
+
+        fetch('/send-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                to: formValues.email,
+                subject: 'Contact Form Submission',
+                text: `${formValues.name} says: ${formValues.message}`,
+            }),
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    };
 
     return (
         <section className="screen-container">

@@ -5,10 +5,15 @@ const fs = require('fs');
 const cors = require('cors');
 const app = express();
 const PORT = 3000;
+const nodemailer = require("nodemailer");
+const bodyParser = require('body-parser');
 require('dotenv').config();
 
+// parse application/json
+app.use(bodyParser.json());
+
 app.use(express.static(path.join(__dirname, '../front-end/dist'), { index: 'index.html' }));
-//middleware
+//request admin credentials
 app.get('/isAdmin', (req, res) => {
   const { uid } = req.query;
 
@@ -17,6 +22,37 @@ app.get('/isAdmin', (req, res) => {
   } else {
     res.json({ isAdmin: false });
   }
+});
+///nodemailer
+let transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    type: 'OAuth2',
+    user: process.env.EMAIL,
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    refreshToken: process.env.REFRESH_TOKEN,
+    accessToken: process.env.ACCESS_TOKEN,
+  }
+});
+
+app.post('/send-email', (req, res) => {
+    let mailOptions = {
+        from: process.env.EMAIL,
+        to: 'objectpetitaceramics@gmail.com',
+        subject:'contact form submission',
+        text: req.body.text
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error);
+            res.status(500).send(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+            res.status(200).send('Email sent: ' + info.response);
+        }
+    });
 });
 
 app.get('*', (req, res) => {
