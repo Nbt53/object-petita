@@ -8,30 +8,28 @@ export default function About() {
 
                 <div className="about-text-container">
                     <p className="about-text mb-small">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi non
-                        laudantium cumque enim. Quibusdam nisi enim consequuntur perspiciatis obcaecati minima,
-                        hic libero ab praesentium sunt, illum id eum nihil facilis!    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi non
-                        laudantium cumque enim. Quibusdam nisi enim consequuntur perspiciatis obcaecati minima,
-                        hic libero ab praesentium sunt, illum id eum nihil facilis!
+                    Simge Vurtak is a UK-based ceramics artist,
+                     expressing her thoughts and emotions through
+                      the medium of clay.
                     </p>
                     <p className="about-text mb-small">
-                        Blanditiis quod optio dolore modi ea molestiae quae dicta consectetur eum
-                        corrupti dolorem aliquid, nisi sed magni voluptatum sapiente illo maxime reprehenderit.
-                        Aspernatur fugiat a at, animi possimus tenetur repudiandae?    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi non
-                        laudantium cumque enim. Quibusdam nisi enim consequuntur perspiciatis obcaecati minima,
-                        hic libero ab praesentium sunt, illum id eum nihil facilis!
+                    Her style is characterised by its dark yet humorous and grotesque elements, serving as a reflection of her playful approach to exploring the human psyche. Rather than stemming from melancholia, her work is a deliberate exercise of pondering and action,
+                     inviting viewers to engage with their own thoughts and feelings. 
                     </p>
                     <p className="about-text">
-                        At eius voluptate est, sunt deserunt corporis? Dicta cumque enim sapiente illo autem
-                        repudiandae. Obcaecati, repellat voluptates maiores ab quaerat mollitia ipsa, aliquam hic,
-                        corrupti dolorum rem id delectus tempore.
+                    Simge believes in the archaic playfulness of humanity, often referencing to the concept of 
+                    &apos;Homo-Ludens&apos;—Men, The Player—in her toy/object like creations. 
                     </p>
+                    <p className="about-text">
+                    Drawing inspiration from her latest readings on Lacan, her work integrates elements of this
+                     theory that focuses on human desire and its mechanics.  
+                    </p>
+              
 
                     <ul className="about-list">
-                        <li className="about-list-item mb-small">Big Bird Art fair 2022</li>
-                        <li className="about-list-item mb-small">Beakfest 2023</li>
-                        <li className="about-list-item mb-small">Dark Pottery 2023</li>
-                        <li className="about-list-item mb-small">Ceribal Ceramics 2024</li>
+                        <li className="about-list-item mb-small">13th Community Art Exhibition in Virtual Reality by Circular Art Space Bristol, 2024. </li>
+                        <li className="about-list-item mb-small">UN/FAMILIAR By Fox Yard Studio & Art Magnitude, 2024. </li>
+                
                     </ul>
 
                 </div>

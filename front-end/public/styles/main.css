@@ -376,9 +376,13 @@ ion-icon {
 }
 .about-text {
   font-size: 1.4rem;
+  text-align: center;
+  margin: auto;
 }
 .about-text-container {
   padding: 0 2rem;
+  margin: auto;
+  text-align: center;
 }
 @media (max-width: 75em) {
   .about-text-container {

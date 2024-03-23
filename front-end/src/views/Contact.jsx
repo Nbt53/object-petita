@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import { useState } from "react";
-import { AllContext } from "../../context/AllContext";
 import ViewTile from "../components/ViewTitle";
 import formBG from '../../public/images/form-bg.jpg';
 export default function Contact() {
@@ -27,12 +25,11 @@ export default function Contact() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                to: formValues.email,
-                subject: 'Contact Form Submission',
                 text: `${formValues.name} says: ${formValues.message}`,
             }),
         })
             .then(response => response.json())
+            .then(data => console.log(data))
             .catch((error) => {
                 console.error('Error:', error);
             });

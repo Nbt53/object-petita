@@ -1,21 +1,25 @@
 .about {
-
     &-container {
         font-family: $font-body;
         display: flex;
         flex-direction: row;
         width: 100%;
+
         @include respond(phone-small) {
             flex-direction: column;
         }
-
     }
 
     &-text {
         font-size: 1.4rem;
+        text-align: center;
+        margin: auto;
 
         &-container {
             padding: 0 2rem;
+            margin: auto;
+            text-align: center;
+
             @include respond(tab-land) {
                 margin-top: 2rem;
                 padding: unset;
@@ -23,9 +27,11 @@
         }
     }
 
-    &-img{
+
+
+    &-img {
         @include respond(tab-land) {
-            max-width: 100%; 
+            max-width: 100%;
         }
     }
 
