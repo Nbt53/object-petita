@@ -49,7 +49,6 @@ app.post('/send-email', (req, res) => {
             console.log(error);
             res.status(500).send(error);
         } else {
-            console.log('Email sent: ' + info.response);
             res.status(200).send('Email sent: ' + info.response);
         }
     });
