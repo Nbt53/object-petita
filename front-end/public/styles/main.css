@@ -59,7 +59,7 @@ button {
 
 p {
   font-family: "Playfair Display", serif;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 500;
 }
 
@@ -69,6 +69,14 @@ h2 {
   text-transform: uppercase;
   font-weight: 200;
   letter-spacing: 2px;
+}
+
+h3 {
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: underline;
+  margin-bottom: 2rem;
 }
 
 .header-title {
@@ -499,6 +507,12 @@ ion-icon {
   justify-content: space-around;
   margin: 2rem;
 }
+.form-sent {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 5rem;
+}
 .form-text {
   display: flex;
   flex-direction: column;
@@ -617,13 +631,48 @@ ion-icon {
     padding: 0 2rem;
   }
 }
-.image-view__title {
-  font-size: 2.2rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-decoration: underline;
-  margin-bottom: 2rem;
-}
 .image-view__body {
   margin-bottom: 2rem;
+}
+
+.blog-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 4rem;
+  margin-left: 2rem;
+}
+@media (max-width: 31.25em) {
+  .blog-container {
+    flex-direction: column;
+    margin-left: unset;
+  }
+}
+.blog-image {
+  width: 100%;
+  margin-bottom: 2rem;
+  transform: translateX(-2rem);
+}
+@media (max-width: 31.25em) {
+  .blog-image {
+    width: 100vw;
+  }
+}
+.blog-image__img {
+  width: 100%;
+}
+.blog-text {
+  margin-bottom: 2rem;
+  padding-right: 18rem;
+}
+@media (max-width: 31.25em) {
+  .blog-text {
+    padding-right: unset;
+  }
+}
+.blog-date {
+  color: #868e96;
+  font-size: 1.2rem;
+  font-family: 400;
+  margin-left: 4rem;
 }/*# sourceMappingURL=main.css.map */

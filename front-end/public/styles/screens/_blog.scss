@@ -1,0 +1,46 @@
+.blog {
+
+    &-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin-bottom: 4rem;
+        margin-left: 2rem;
+
+        @include respond(phone-small) {
+            flex-direction: column;
+            margin-left: unset;
+        }
+    }
+
+    &-image {
+        width: 100%;
+        margin-bottom: 2rem;
+        transform: translateX(-2rem);
+
+        @include respond(phone-small) {
+            width: 100vw;
+        }
+
+        &__img {
+            width: 100%;
+        }
+    }
+
+    &-text {
+        margin-bottom: 2rem;
+        padding-right: 18rem;
+        
+        @include respond(phone-small) {
+            padding-right: unset;
+        }
+        
+    }
+
+    &-date {
+        color: $color-grey-dark-2;
+        font-size: 1.2rem;
+        font-family: 400;
+        margin-left: 4rem;
+    }
+}

@@ -13,6 +13,8 @@ require('dotenv').config();
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, '../front-end/dist'), { index: 'index.html' }));
+
+
 //request admin credentials
 app.get('/isAdmin', (req, res) => {
   const { uid } = req.query;
@@ -23,6 +25,8 @@ app.get('/isAdmin', (req, res) => {
     res.json({ isAdmin: false });
   }
 });
+
+
 ///nodemailer
 let transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -37,21 +41,21 @@ let transporter = nodemailer.createTransport({
 });
 
 app.post('/send-email', (req, res) => {
-    let mailOptions = {
-        from: process.env.EMAIL,
-        to: 'objectpetitaceramics@gmail.com',
-        subject:'contact form submission',
-        text: req.body.text
-    };
+  let mailOptions = {
+    from: process.env.EMAIL,
+    to: 'objectpetitaceramics@gmail.com',
+    subject: 'contact form submission',
+    text: req.body.text
+  };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.log(error);
-            res.status(500).send(error.message);
-        } else {
-            res.status(200).send('Email sent: ' + info.response);
-        }
-    });
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      res.status(500).send(error.message);
+    } else {
+      res.status(200).send('Email sent: ' + info.response);
+    }
+  });
 });
 
 app.get('*', (req, res) => {

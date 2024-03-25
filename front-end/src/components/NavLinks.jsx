@@ -35,10 +35,10 @@ export function NavLinks() {
     return (
         <div className="nav-top">
             <div className="nav-top-links">
-                <NavLink to="/" className="nav-top__link">Home</NavLink>
-                <NavLink to="/portfolio" className="nav-top__link">Portfolio</NavLink>
+                <NavLink to="/" className="nav-top__link">Portfolio</NavLink>
                 <NavLink to="/about" className="nav-top__link">About</NavLink>
                 <NavLink to="/contact" className="nav-top__link">Contact</NavLink>
+                <NavLink to="/blogs" className="nav-top__link">Puppetry</NavLink>
             </div>
 
             <div className="nav-top-users">

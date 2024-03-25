@@ -9,12 +9,12 @@ export default function Upload() {
     const [admin, loading] = useAdmin(auth);
     const defaultFormValues = {
         name: '',
-        img: '',
+        img: [],
         price: '',
         date: '',
         description: '',
         category: '',
-        imagePath: '',
+        imagePath: [],
         id: '',
         inShop: false,
     }
@@ -91,7 +91,7 @@ export default function Upload() {
 
                 <form className="form" onSubmit={handleSubmit}>
                     <input onChange={handleChange} type="text" id="name" name="name" placeholder="Name" className="form-input mb-medium" value={formValues.name} required />
-                    <input onChange={handleChangeFile} type="file" id="img" name="img" placeholder="Image" className="form-input mb-medium" required />
+                    <input onChange={handleChangeFile} type="file" id="img" name="img" placeholder="Image" className="form-input mb-medium" multiple required />
                     <input onChange={handleChange} type="text" id="category" name="category" placeholder="Category" className="form-input mb-medium" value={formValues.category} required />
                     <input onChange={handleChange} type="date" id="date" name="date" placeholder="Date" className="form-input mb-medium" value={formValues.date} required />
                     <input onChange={handleChange} type="number" id="price" name="price" placeholder="Price" className="form-input mb-medium" value={formValues.price} required />
