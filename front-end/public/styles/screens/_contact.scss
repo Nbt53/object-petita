@@ -102,5 +102,12 @@
         justify-content: space-around;
     }
 
+    &-blog {
+
+        &-input {
+            background-color: unset;
+            border: unset;
+        }
+    }
 
 }

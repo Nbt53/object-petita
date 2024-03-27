@@ -8,6 +8,7 @@ import Upload from "../views/Upload";
 import ImageView from "../views/ImageView";
 import Blogs from "../views/Blogs";
 import BlogView from "../views/BlogView";
+import BlogCreate from "../views/BlogCreate";
 
 export function Navigator() {
     return (
@@ -21,6 +22,7 @@ export function Navigator() {
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/" element={<Portfolio />} />
             <Route path="/blogView" element={<BlogView />} />
+            <Route path="/blogCreate" element={<BlogCreate />} />
         </Routes>
     );
 }

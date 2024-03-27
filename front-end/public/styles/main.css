@@ -497,6 +497,7 @@ ion-icon {
   text-align: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 1000;
 }
 
 .form {
@@ -593,6 +594,10 @@ ion-icon {
   display: flex;
   justify-content: space-around;
 }
+.form-blog-input {
+  background-color: unset;
+  border: unset;
+}
 
 .image-view {
   display: flex;
@@ -637,14 +642,13 @@ ion-icon {
 
 .blog-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   margin-bottom: 4rem;
   margin-left: 2rem;
 }
 @media (max-width: 31.25em) {
   .blog-container {
-    flex-direction: column;
     margin-left: unset;
   }
 }
@@ -659,14 +663,23 @@ ion-icon {
   }
 }
 .blog-image__img {
-  width: 100%;
+  width: 50%;
+  display: block;
+  margin: 0 auto;
 }
-.blog-text {
+@media (max-width: 31.25em) {
+  .blog-image__img {
+    width: 100%;
+  }
+}
+.blog-content {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 2rem;
   padding-right: 18rem;
 }
 @media (max-width: 31.25em) {
-  .blog-text {
+  .blog-content {
     padding-right: unset;
   }
 }
@@ -675,4 +688,30 @@ ion-icon {
   font-size: 1.2rem;
   font-family: 400;
   margin-left: 4rem;
+}
+.blog__title {
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: underline;
+  margin-bottom: 2rem;
+}
+.blog__text {
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+.blog__question {
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+.blog__answer {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
 }/*# sourceMappingURL=main.css.map */
