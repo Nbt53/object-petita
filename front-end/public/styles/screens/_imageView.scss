@@ -1,4 +1,4 @@
-.image-view {
+.imageView {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,7 +18,7 @@
         }
     }
 
-    &__text {
+    &__content {
         border: 2px ridge black;
         padding: 2rem;
         max-width: 40%;
@@ -34,11 +34,51 @@
         }
     }
 
-    &__title {
-    
-    }
+    &__title {}
 
     &__body {
         margin-bottom: 2rem;
+    }
+
+    &__preview {
+        display: flex;
+        flex-direction: row;
+        height: 17rem;
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border: 1px black solid;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            height: 2px;
+        }
+
+        scrollbar-width: thin;
+        scrollbar-color: #888 #fff;
+
+        @include respond(phone-small) {}
+    }
+
+    &__thumbnail {
+        height: 100%;
+
+        &-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 15rem;
+            overflow: hidden;
+            cursor: pointer;
+
+            &:not(:last-child) {
+                margin-right: 1rem;
+            }
+
+            @include respond(phone-small) {}
+
+
+        }
     }
 }

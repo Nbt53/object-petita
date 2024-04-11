@@ -598,8 +598,11 @@ ion-icon {
   background-color: unset;
   border: unset;
 }
+.form-upload {
+  margin: 0 auto;
+}
 
-.image-view {
+.imageView {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -607,20 +610,20 @@ ion-icon {
   height: 65rem;
 }
 @media (max-width: 31.25em) {
-  .image-view {
+  .imageView {
     flex-direction: column;
   }
 }
-.image-view__image {
+.imageView__image {
   max-width: 50rem;
 }
 @media (max-width: 31.25em) {
-  .image-view__image {
+  .imageView__image {
     max-width: 100%;
     margin-bottom: 2rem;
   }
 }
-.image-view__text {
+.imageView__content {
   border: 2px ridge black;
   padding: 2rem;
   max-width: 40%;
@@ -629,17 +632,46 @@ ion-icon {
   margin-left: 5rem;
 }
 @media (max-width: 31.25em) {
-  .image-view__text {
+  .imageView__content {
     min-width: 100%;
     border: unset;
     margin: unset;
     padding: 0 2rem;
   }
 }
-.image-view__body {
+.imageView__body {
   margin-bottom: 2rem;
 }
-
+.imageView__preview {
+  display: flex;
+  flex-direction: row;
+  height: 17rem;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px black solid;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #fff;
+}
+.imageView__preview::-webkit-scrollbar {
+  height: 2px;
+}
+.imageView__thumbnail {
+  height: 100%;
+}
+.imageView__thumbnail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+.imageView__thumbnail-container:not(:last-child) {
+  margin-right: 1rem;
+}
 .blog-container {
   display: flex;
   flex-direction: column;
@@ -672,6 +704,12 @@ ion-icon {
     width: 100%;
   }
 }
+.blog-video {
+  height: 40vh;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 0 auto;
+}
 .blog-content {
   display: flex;
   flex-direction: column;
@@ -691,12 +729,12 @@ ion-icon {
 }
 .blog__title {
   font-size: 2.2rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: 2px;
   text-decoration: underline;
   margin-bottom: 2rem;
 }
-.blog__text {
+.blog_intro {
   font-family: "Playfair Display", serif;
   font-size: 1.6rem;
   font-weight: 500;
@@ -714,4 +752,54 @@ ion-icon {
   font-size: 1.4rem;
   font-weight: 400;
   margin-bottom: 2rem;
+}
+.blog__interview {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.blog__interview-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+.blog__date {
+  color: #868e96;
+  font-size: 1.2rem;
+  font-family: 400;
+  margin-left: 4rem;
+  margin-bottom: 2rem;
+}
+.blog textarea {
+  resize: none;
+}
+.blog__preview-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+.blog__preview-title {
+  width: -moz-max-content;
+  width: max-content;
+  cursor: pointer;
+}
+.blog__preview-image {
+  width: 40%;
+  margin-bottom: 2rem;
+}
+@media (max-width: 31.25em) {
+  .blog__preview-image {
+    width: 100vw;
+    transform: translateX(-2rem);
+  }
+}
+.blog__preview-img {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+@media (max-width: 31.25em) {
+  .blog__preview-img {
+    width: 100%;
+  }
 }/*# sourceMappingURL=main.css.map */

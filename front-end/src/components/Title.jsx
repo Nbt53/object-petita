@@ -16,9 +16,13 @@ export default function Title() {
                 <NavLinks />
 
                 <div className="socials-wrapper">
-                    <ion-icon name="logo-instagram"></ion-icon>
-                    <ion-icon name="logo-twitter"></ion-icon>
-                    <ion-icon name="logo-facebook"></ion-icon>
+                    <a href="mailto:simgevurtok@gmail.com" target='blank' className="form-link">
+                        <ion-icon name="mail-outline"></ion-icon>
+                    </a>
+                    <a href="https://www.instagram.com/objectpetita_ceramics" target='blank' className="form-link">
+                        <ion-icon name="logo-instagram"></ion-icon>
+                    </a>
+
                 </div>
             </div>
 

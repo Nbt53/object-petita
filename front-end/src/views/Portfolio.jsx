@@ -28,7 +28,6 @@ export default function Portfolio() {
                 return (
                     <div className="portfolio-container" key={index} onClick={() => handlePress(docData)}>
                         <img src={docData.img} alt={docData.name} className="portfolio-image" />
-
                     </div>
 
                 )

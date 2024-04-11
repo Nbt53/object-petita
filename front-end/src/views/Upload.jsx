@@ -4,6 +4,8 @@ import { db, storage } from "../config/Firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { useAdmin } from "../../public/js/checkAdmin";
 import { auth } from "../config/Auth";
+import Submitting from "../components/Submitting";
+import Submitted from "../components/Sumbitted";
 
 export default function Upload() {
     const [admin, loading] = useAdmin(auth);
@@ -17,6 +19,8 @@ export default function Upload() {
         imagePath: [],
         id: '',
         inShop: false,
+        onSale: false,
+        promoted: false,
     }
     const [formValues, setFormValues] = useState(defaultFormValues);
     const [submitted, setSubmitted] = useState(false);
@@ -42,67 +46,76 @@ export default function Upload() {
     };
 
     const handleChangeFile = (event) => {
+        const fileNames = Array.from(event.target.files).map(file => file.name);
         setFormValues({
             ...formValues,
-            img: event.target.files[0].name
+            img: fileNames
         });
     }
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        setSubmitting(true);
-        const fileInput = document.getElementById('img');
-        const file = fileInput.files[0];
+   const handleSubmit = async (event) => {
+    event.preventDefault();
+    setSubmitting(true);
+    const fileInput = document.getElementById('img');
+    const files = Array.from(fileInput.files);
+    const imgURLs = [];
+    const imagePaths = [];
+
+    for (const file of files) {
         const storageRef = ref(storage, `images/${file.name}`);
         await uploadBytes(storageRef, file);
         const imgURL = await getDownloadURL(storageRef);
-        const id = Math.random().toString(36).substring(7);
-        const updatedFormValues = { ...formValues, img: imgURL, imagePath: storageRef.fullPath, id: id };
-        setFormValues(updatedFormValues);
-        try {
-            await addDoc(collection(db, 'portfolio'), updatedFormValues)
-            setFormValues(defaultFormValues);
-            setSubmitted(true);
-            setSubmitting(false);
-        } catch (e) {
-            console.error('Error adding document: ', e);
-            setSubmitting(false);
-        }
+        imgURLs.push(imgURL);
+        imagePaths.push(storageRef.fullPath);
     }
 
-    const handleAnother = () => {
-        setSubmitted(false);
-    }
+    const id = Math.random().toString(36).substring(7);
+    const updatedFormValues = { ...formValues, img: imgURLs, imagePath: imagePaths, id: id };
+    setFormValues(updatedFormValues);
 
-    if (submitted) {
-        return (
-            <div>
-                <section className="screen-container">
-                    <h1>Submitted</h1>
-                    <button className="form-button" onClick={handleAnother}>Submit another?</button>
-                </section>
-            </div>
-        )
+    try {
+        await addDoc(collection(db, 'portfolio'), updatedFormValues)
+        setFormValues(defaultFormValues);
+        setSubmitted(true);
+        setSubmitting(false);
+    } catch (e) {
+        console.error('Error adding document: ', e);
+        setSubmitting(false);
     }
+}
 
     return (
-        <div>
+        <>
             <section className="screen-container">
+                {submitting ? (
+                    <Submitting text={'submitting'} />
+                ) : null}
 
-                <form className="form" onSubmit={handleSubmit}>
-                    <input onChange={handleChange} type="text" id="name" name="name" placeholder="Name" className="form-input mb-medium" value={formValues.name} required />
-                    <input onChange={handleChangeFile} type="file" id="img" name="img" placeholder="Image" className="form-input mb-medium" multiple required />
-                    <input onChange={handleChange} type="text" id="category" name="category" placeholder="Category" className="form-input mb-medium" value={formValues.category} required />
-                    <input onChange={handleChange} type="date" id="date" name="date" placeholder="Date" className="form-input mb-medium" value={formValues.date} required />
-                    <input onChange={handleChange} type="number" id="price" name="price" placeholder="Price" className="form-input mb-medium" value={formValues.price} required />
-                    <input onChange={handleChange} type="checkbox" id="inShop" name="inShop" placeholder="In Shop" className="form-input mb-medium" value={formValues.inShop} />
-                    <textarea onChange={handleChange} id="description" name="description" placeholder="description" className="form-textarea" value={formValues.description} required></textarea>
-                    <div className="form-submit">
-                        <input type="submit" value="Submit" className="button" disabled={submitting} />
-                    </div>
+                {submitted ? (
+                    <Submitted setSubmitted={setSubmitted} />
+                ) : null}
 
-                </form>
+                {!submitting && !submitted ? (
+                    <form className="form form-upload" onSubmit={handleSubmit}>
+                        <input onChange={handleChange} type="text" id="name" name="name" placeholder="Name" className="form-input mb-medium" value={formValues.name} required />
+                        <input onChange={handleChangeFile} type="file" id="img" name="img" placeholder="Image" className="form-input mb-medium" multiple required />
+                        <input onChange={handleChange} type="text" id="category" name="category" placeholder="Category" className="form-input mb-medium" value={formValues.category} required />
+                        <input onChange={handleChange} type="date" id="date" name="date" placeholder="Date" className="form-input mb-medium" value={formValues.date} required />
+                        <input onChange={handleChange} type="number" id="price" name="price" placeholder="Price" className="form-input mb-medium" value={formValues.price} required />
+                        <label htmlFor="inShop">In Shop</label>
+                        <input onChange={handleChange} type="checkbox" id="inShop" name="inShop" className="form-input mb-medium" value={formValues.inShop} />
+                        <label htmlFor="onSale">On Sale</label>
+                        <input onChange={handleChange} type="checkbox" id="onSale" name="onSale" className="form-input mb-medium" value={formValues.onSale} />
+                        <label htmlFor="promoted">Promoted</label>
+                        <input onChange={handleChange} type="checkbox" id="promoted" name="promoted" className="form-input mb-medium" value={formValues.promoted} />
+                        <textarea onChange={handleChange} id="description" name="description" placeholder="description" className="form-textarea" value={formValues.description} required></textarea>
+                        <div className="form-submit">
+                            <input type="submit" value="Submit" className="button" disabled={submitting} />
+                        </div>
+
+                    </form>
+                ) : null}
             </section>
-        </div>
+        </>
     )
 }

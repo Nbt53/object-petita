@@ -12,7 +12,7 @@ import Submitting from '../components/Submitting';
 import Submitted from '../components/Sumbitted';
 import AdminButton from '../components/AdminButton';
 
-export default function BlogCreate() {
+export default function EditBlog({ blog }) {
 
     const [admin] = useAdmin(auth);
     const navigate = useNavigate();
@@ -24,30 +24,20 @@ export default function BlogCreate() {
 
 
     const [formData, setFormData] = useState({
-        title: 'Title',
-        slug: 'url-slug',
-        intro: 'Just some text',
-        outro: 'Just some text',
+        title: blog.title,
+        slug: blog.slug,
+        intro: blog.intro,
+        outro: blog.outro,
         image: '',
         video: '',
-        question: 'question',
-        answer: 'answer',
-        date: '1988-02-10'
+        question: 'new question?',
+        answer: 'new answer?',
+        date: blog.date
     });
 
-    const [blog, setBlog] = useState({
-        id: null,
-        slug: '',
-        image: { key: 1, url: '', alt: 'Blog Image', path: '' },
-        title: { key: 2, title: 'Title' },
-        intro: { key: 3, intro: 'Just some text' },
-        content: {
-            key: 4,
-            interview: []
-        },
-        outro: { key: 5, outro: 'Just some text' },
+    const [editedBlog, setBlog] = useState({
+        ...blog
     })
-
     const [questionKey, setQuestionKey] = useState(100);
 
     const contentRef = useRef(null);
@@ -103,12 +93,12 @@ export default function BlogCreate() {
             ) : null}
             {!submitting && !submitted ?
                 (<>
-                    <AdminButton func={submit} />
+                   
                     <div className="blog">
                         <div className="blog-container">
                             <div className="blog-image">
                                 <input type="file" id='img' accept="image/*" onChange={(e) => handleChangeImage(e, setSelectedImage)} />
-                                {selectedImage && <img src={selectedImage} className="blog-image__img" alt="Selected" />}
+                                { <img src={selectedImage || blog.image.url} className="blog-image__img" alt="Selected" />}
 
                             </div>
                             <div className="blog-content">
@@ -126,11 +116,11 @@ export default function BlogCreate() {
                                 <BlogContent type='date' name='date' value={formData.date} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={contentRef} />
 
                                 <input type="file" id='video' accept="video/*" onChange={(e) => handleChangeVideo(e, setSelectedVideo)} />
-                                {selectedVideo && <video src={selectedVideo} className="blog-video mb-medium" ></video>}
+                                { <video src={selectedVideo || blog.video.url} className="blog-video mb-medium" ></video>}
 
                                 <div className="blog__interview">
-                                    <AdminButton func={() => addInterviewSection(setBlog, blog, questionKey, formData, setQuestionKey)} />
-                                    {blog.content.interview.map((section) => {
+                                    <AdminButton func={() => addInterviewSection(setBlog, editedBlog, questionKey, formData, setQuestionKey)} />
+                                    {editedBlog.content.interview.map((section) => {
 
                                         return (
                                             <div key={section.key} className="blog__interview-section">
