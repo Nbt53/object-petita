@@ -18,8 +18,9 @@ export default function RenderBlog({ blog }) {
                 </div>
                 <div className="blog-content">
                     <h3 className="blog__title">{blog.title}</h3>
-                    <p className="blog__text">{blog.intro}</p>
-                    <p className="blog__date">{blog.date}</p>
+                    <p className="blog__date mb-medium"> April 10th 2024</p>
+                    <p className="blog__text">{blog.intro}</p> 
+                    <p className="blog__date">{blog.date}</p>                   
                     <video src={blog.video.url} className="blog-video mb-medium" controls ></video>
                     {renderInterview()}
                     <p className="blog__outro">{blog.outro}</p>

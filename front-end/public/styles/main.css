@@ -68,7 +68,7 @@ button {
 
 p {
   font-family: "Playfair Display", serif;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 500;
 }
 
@@ -399,7 +399,6 @@ ion-icon {
   }
 }
 .about-text {
-  font-size: 1.4rem;
   text-align: center;
   margin: auto;
 }
@@ -762,16 +761,15 @@ ion-icon {
 }
 .blog-date {
   color: #868e96;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-family: 400;
-  margin-left: 4rem;
 }
 .blog__title {
   font-size: 2.2rem;
   text-transform: capitalize;
   letter-spacing: 2px;
   text-decoration: underline;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 }
 .blog_intro {
   font-family: "Playfair Display", serif;
@@ -782,13 +780,11 @@ ion-icon {
 }
 .blog__question {
   font-family: "Playfair Display", serif;
-  font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 2rem;
 }
 .blog__answer {
   font-family: "Playfair Display", serif;
-  font-size: 1.4rem;
   font-weight: 400;
   margin-bottom: 2rem;
 }
@@ -804,10 +800,8 @@ ion-icon {
 }
 .blog__date {
   color: #868e96;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-family: 400;
-  margin-left: 4rem;
-  margin-bottom: 2rem;
 }
 .blog textarea {
   resize: none;
