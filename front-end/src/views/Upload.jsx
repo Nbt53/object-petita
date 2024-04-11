@@ -6,6 +6,7 @@ import { useAdmin } from "../../public/js/checkAdmin";
 import { auth } from "../config/Auth";
 import Submitting from "../components/Submitting";
 import Submitted from "../components/Sumbitted";
+import { splitTextIntoParagraphs } from "../../public/js/utils/textSplit";
 
 export default function Upload() {
     const [admin, loading] = useAdmin(auth);
@@ -21,6 +22,7 @@ export default function Upload() {
         inShop: false,
         onSale: false,
         promoted: false,
+        soldOut: false
     }
     const [formValues, setFormValues] = useState(defaultFormValues);
     const [submitted, setSubmitted] = useState(false);
@@ -39,10 +41,12 @@ export default function Upload() {
     }
 
     const handleChange = (event) => {
+        const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
         setFormValues({
             ...formValues,
-            [event.target.name]: event.target.value
+            [event.target.name]: value
         });
+       
     };
 
     const handleChangeFile = (event) => {
@@ -53,36 +57,37 @@ export default function Upload() {
         });
     }
 
-   const handleSubmit = async (event) => {
-    event.preventDefault();
-    setSubmitting(true);
-    const fileInput = document.getElementById('img');
-    const files = Array.from(fileInput.files);
-    const imgURLs = [];
-    const imagePaths = [];
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setSubmitting(true);
+        const fileInput = document.getElementById('img');
+        const files = Array.from(fileInput.files);
+        const imgURLs = [];
+        const imagePaths = [];
 
-    for (const file of files) {
-        const storageRef = ref(storage, `images/${file.name}`);
-        await uploadBytes(storageRef, file);
-        const imgURL = await getDownloadURL(storageRef);
-        imgURLs.push(imgURL);
-        imagePaths.push(storageRef.fullPath);
+        for (const file of files) {
+            const storageRef = ref(storage, `images/${file.name}`);
+            await uploadBytes(storageRef, file);
+            const imgURL = await getDownloadURL(storageRef);
+            imgURLs.push(imgURL);
+            imagePaths.push(storageRef.fullPath);
+        }
+
+        const id = Math.random().toString(36).substring(7);
+        const paragraphs = formValues.description.split('\n');
+        const updatedFormValues = { ...formValues, img: imgURLs, imagePath: imagePaths, id: id, description: paragraphs };
+        setFormValues(updatedFormValues);
+
+        try {
+            await addDoc(collection(db, 'portfolio'), updatedFormValues)
+            setFormValues(defaultFormValues);
+            setSubmitted(true);
+            setSubmitting(false);
+        } catch (e) {
+            console.error('Error adding document: ', e);
+            setSubmitting(false);
+        }
     }
-
-    const id = Math.random().toString(36).substring(7);
-    const updatedFormValues = { ...formValues, img: imgURLs, imagePath: imagePaths, id: id };
-    setFormValues(updatedFormValues);
-
-    try {
-        await addDoc(collection(db, 'portfolio'), updatedFormValues)
-        setFormValues(defaultFormValues);
-        setSubmitted(true);
-        setSubmitting(false);
-    } catch (e) {
-        console.error('Error adding document: ', e);
-        setSubmitting(false);
-    }
-}
 
     return (
         <>

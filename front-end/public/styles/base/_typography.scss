@@ -45,6 +45,8 @@ h3 {
 
         @include respond(tab-land) {
             text-align: unset;
+            margin-left: 2rem;
+            margin-top: 1rem;
         }
     }
 

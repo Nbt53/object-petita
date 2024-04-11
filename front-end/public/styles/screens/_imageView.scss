@@ -3,14 +3,14 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 65rem;
+    height: 90vh;
 
     @include respond(phone-small) {
         flex-direction: column;
     }
 
     &__image {
-        max-width: 50rem;
+        max-width: 40%;
 
         @include respond(phone-small) {
             max-width: 100%;
@@ -19,22 +19,27 @@
     }
 
     &__content {
-        border: 2px ridge black;
         padding: 2rem;
-        max-width: 40%;
-        max-height: 100%;
+        width: 50%;
+        min-height: 100%;
         margin-right: auto;
         margin-left: 5rem;
+        position: absolute;
+        right: 2rem;
+        top: 0;
 
         @include respond(phone-small) {
             min-width: 100%;
             border: unset;
             margin: unset;
             padding: 0 2rem;
+            position: unset;
         }
     }
 
-    &__title {}
+    &__title {
+        text-transform: capitalize;
+    }
 
     &__body {
         margin-bottom: 2rem;
@@ -45,7 +50,7 @@
         flex-direction: row;
         height: 17rem;
         width: 100%;
-        justify-content: space-between;
+        justify-content: space-around;
         margin-bottom: 1rem;
         padding: 1rem;
         border: 1px black solid;
@@ -77,8 +82,18 @@
             }
 
             @include respond(phone-small) {}
+        }
+    }
 
+    &__edit {
+        display: flex;
+        flex-direction: column;
 
+        width: 100%;
+
+        input,
+        textarea {
+            background-color: unset;
         }
     }
 }

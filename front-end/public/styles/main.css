@@ -7,7 +7,6 @@
 html {
   font-family: "Playfair Display", serif;
   font-size: 62.5%;
-  margin: 2rem;
 }
 @media (max-width: 75em) {
   html {
@@ -17,14 +16,24 @@ html {
 
 body {
   box-sizing: border-box;
-  min-height: 100vh;
+  height: 100vh;
+  padding: 2rem;
   background-color: #F8EDEB;
+}
+@media (max-width: 31.25em) {
+  body {
+    padding: unset;
+  }
+}
+
+#root {
+  height: 100%;
 }
 
 .wrapper {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: 100%;
 }
 @media (max-width: 75em) {
   .wrapper {
@@ -91,6 +100,8 @@ h3 {
 @media (max-width: 75em) {
   .header-title {
     text-align: unset;
+    margin-left: 2rem;
+    margin-top: 1rem;
   }
 }
 
@@ -229,7 +240,6 @@ a {
   position: sticky;
   top: 0;
   width: 20rem;
-  height: 100%;
   display: flex;
   flex-direction: column;
   border-right: 2px solid black;
@@ -287,6 +297,12 @@ a {
   padding: 1rem 0 0 2rem;
   width: 100%;
   position: relative;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #fff;
+}
+.screen-container::-webkit-scrollbar {
+  height: 2px;
 }
 @media (max-width: 31.25em) {
   .screen-container {
@@ -483,6 +499,8 @@ ion-icon {
 @media (max-width: 31.25em) {
   .portfolio-container {
     width: 100%;
+    margin: unset;
+    margin-bottom: 2rem;
   }
 }
 .portfolio-admin {
@@ -607,7 +625,7 @@ ion-icon {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 65rem;
+  height: 90vh;
 }
 @media (max-width: 31.25em) {
   .imageView {
@@ -615,7 +633,7 @@ ion-icon {
   }
 }
 .imageView__image {
-  max-width: 50rem;
+  max-width: 40%;
 }
 @media (max-width: 31.25em) {
   .imageView__image {
@@ -624,12 +642,14 @@ ion-icon {
   }
 }
 .imageView__content {
-  border: 2px ridge black;
   padding: 2rem;
-  max-width: 40%;
-  max-height: 100%;
+  width: 50%;
+  min-height: 100%;
   margin-right: auto;
   margin-left: 5rem;
+  position: absolute;
+  right: 2rem;
+  top: 0;
 }
 @media (max-width: 31.25em) {
   .imageView__content {
@@ -637,7 +657,11 @@ ion-icon {
     border: unset;
     margin: unset;
     padding: 0 2rem;
+    position: unset;
   }
+}
+.imageView__title {
+  text-transform: capitalize;
 }
 .imageView__body {
   margin-bottom: 2rem;
@@ -647,7 +671,7 @@ ion-icon {
   flex-direction: row;
   height: 17rem;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-bottom: 1rem;
   padding: 1rem;
   border: 1px black solid;
@@ -672,12 +696,21 @@ ion-icon {
 .imageView__thumbnail-container:not(:last-child) {
   margin-right: 1rem;
 }
+.imageView__edit {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.imageView__edit input,
+.imageView__edit textarea {
+  background-color: unset;
+}
+
 .blog-container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 4rem;
-  margin-left: 2rem;
+  padding-bottom: 4rem;
 }
 @media (max-width: 31.25em) {
   .blog-container {
@@ -687,11 +720,10 @@ ion-icon {
 .blog-image {
   width: 100%;
   margin-bottom: 2rem;
-  transform: translateX(-2rem);
 }
 @media (max-width: 31.25em) {
   .blog-image {
-    width: 100vw;
+    width: 100%;
   }
 }
 .blog-image__img {
@@ -710,11 +742,18 @@ ion-icon {
   width: max-content;
   margin: 0 auto;
 }
+@media (max-width: 31.25em) {
+  .blog-video {
+    width: 100%;
+    transform: translateX(-1rem);
+  }
+}
 .blog-content {
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
   padding-right: 18rem;
+  padding: 0 2rem;
 }
 @media (max-width: 31.25em) {
   .blog-content {
@@ -789,8 +828,7 @@ ion-icon {
 }
 @media (max-width: 31.25em) {
   .blog__preview-image {
-    width: 100vw;
-    transform: translateX(-2rem);
+    width: 100%;
   }
 }
 .blog__preview-img {

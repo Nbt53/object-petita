@@ -3,6 +3,13 @@
         padding: 1rem 0 0 2rem;
         width: 100%;
         position: relative;
+        overflow: auto;
+        &::-webkit-scrollbar {
+            height: 2px;
+        }
+
+        scrollbar-width: thin;
+        scrollbar-color: #888 #fff;
 
         @include respond(phone-small) {
             padding: 1rem 0 0 0;
