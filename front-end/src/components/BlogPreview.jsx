@@ -5,7 +5,7 @@ export default function BlogPreview({ blog, viewBlog }) {
             <div className=" blog__preview-image">
                 <img src={blog.image.url} alt="blog" className=" blog__preview-img" />
             </div>
-            <div className="blog-content">
+            <div className="blog-content blog__preview-content">
                 <h3 className="blog__title blog__preview-title"
                     onClick={() => viewBlog(blog.slug)}>
                     {blog.title}

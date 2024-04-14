@@ -9,9 +9,10 @@ export default function Portfolio() {
     const navigate = useNavigate()
     const [admin] = useAdmin(auth);
     const { portfolioData } = useContext(AllContext);
+
     const handlePress = (docData) => {
         try {
-            navigate('/ImageView', { state: docData });
+            navigate(`/ImageView/${docData.slug}`, { state: docData });
         } catch (e) {
             console.error('Error navigating to ImageView: ', e);
         }

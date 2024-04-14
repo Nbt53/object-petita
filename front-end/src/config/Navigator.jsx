@@ -18,7 +18,7 @@ export function Navigator() {
             <Route path="/user" element={<User />} />
             <Route path="/object" element={<Home />} />
             <Route path="/upload" element={<Upload />} />
-            <Route path="/ImageView" element={<ImageView />} />
+            <Route path="/ImageView/:slug" element={<ImageView />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/" element={<Portfolio />} />
             <Route path="/blogView/:slug" element={<BlogView />} />

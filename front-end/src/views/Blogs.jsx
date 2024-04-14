@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import ViewTitle from '../components/ViewTitle';
 import { useContext } from 'react';
 import { AllContext } from '../../context/AllContext';
 import BlogPreview from '../components/BlogPreview';
@@ -26,7 +25,6 @@ export default function Blogs() {
         <div className="screen-container">
             <AdminButton func={newBlog} />
             <div className="blog">
-                <ViewTitle title="interviews" />
                 {renderPreviews()}
             </div>
 

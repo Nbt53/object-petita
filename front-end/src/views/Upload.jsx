@@ -6,10 +6,15 @@ import { useAdmin } from "../../public/js/checkAdmin";
 import { auth } from "../config/Auth";
 import Submitting from "../components/Submitting";
 import Submitted from "../components/Sumbitted";
-import { splitTextIntoParagraphs } from "../../public/js/utils/textSplit";
+import { useContext } from "react";
+import { AllContext } from "../../context/AllContext";
+import { slugValidation } from "../../public/js/utils/slugValidation";
+
 
 export default function Upload() {
     const [admin, loading] = useAdmin(auth);
+    const [slugError, setSlugError] = useState('');
+    const { blogSlugs, portfolioSlugs } = useContext(AllContext);
     const defaultFormValues = {
         name: '',
         img: [],
@@ -22,7 +27,8 @@ export default function Upload() {
         inShop: false,
         onSale: false,
         promoted: false,
-        soldOut: false
+        soldOut: false,
+        slug: ''
     }
     const [formValues, setFormValues] = useState(defaultFormValues);
     const [submitted, setSubmitted] = useState(false);
@@ -42,11 +48,15 @@ export default function Upload() {
 
     const handleChange = (event) => {
         const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+
+        if (event.target.name === 'slug') {
+            setSlugError(slugValidation(value, blogSlugs, portfolioSlugs));
+        }
         setFormValues({
             ...formValues,
             [event.target.name]: value
         });
-       
+
     };
 
     const handleChangeFile = (event) => {
@@ -103,6 +113,8 @@ export default function Upload() {
                 {!submitting && !submitted ? (
                     <form className="form form-upload" onSubmit={handleSubmit}>
                         <input onChange={handleChange} type="text" id="name" name="name" placeholder="Name" className="form-input mb-medium" value={formValues.name} required />
+                        <input onChange={handleChange} type="text" id="slug" name="slug" placeholder="slug for URL (must be unique)" className="form-input mb-medium" value={formValues.slug} required />
+                        <p className="form-error">{slugError}</p>
                         <input onChange={handleChangeFile} type="file" id="img" name="img" placeholder="Image" className="form-input mb-medium" multiple required />
                         <input onChange={handleChange} type="text" id="category" name="category" placeholder="Category" className="form-input mb-medium" value={formValues.category} required />
                         <input onChange={handleChange} type="date" id="date" name="date" placeholder="Date" className="form-input mb-medium" value={formValues.date} required />
@@ -115,7 +127,7 @@ export default function Upload() {
                         <input onChange={handleChange} type="checkbox" id="promoted" name="promoted" className="form-input mb-medium" value={formValues.promoted} />
                         <textarea onChange={handleChange} id="description" name="description" placeholder="description" className="form-textarea" value={formValues.description} required></textarea>
                         <div className="form-submit">
-                            <input type="submit" value="Submit" className="button" disabled={submitting} />
+                            <input type="submit" value="Submit" className="button" disabled={slugError} />
                         </div>
 
                     </form>

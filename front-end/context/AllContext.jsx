@@ -7,7 +7,8 @@ export const AllContext = createContext();
 export const AllProvider = ({ children }) => {
     const [portfolioData, setPortfolioData] = useState([])
     const [blogs, setBlogs] = useState([])
-    const [slugList, setSlugList] = useState([])
+    const [blogSlugs, setBlogSlugs] = useState([])
+    const [portfolioSlugs, setPortfolioSlugs] = useState([])
 
     ////////////////Fetch Portfolio ///////////////////////
 
@@ -54,12 +55,18 @@ export const AllProvider = ({ children }) => {
     //////////list slugs for validation //////////////////
 
     useEffect(() => {
-        const slugs = blogs.map(blog => blog.slug);
-        setSlugList(slugs);
-    }, [blogs])
+        const blogSlugs = blogs.map(blog => blog.slug);
+        const portfolioSlugs = portfolioData.map(portfolio => Object.values(portfolio)[0].slug);
+        setBlogSlugs(blogSlugs);
+        setPortfolioSlugs(portfolioSlugs);
+    }, [blogs, portfolioData])
+
 
     return (
-        <AllContext.Provider value={{ portfolioData, blogs, slugList }}>
+        <AllContext.Provider value={{
+            portfolioData, blogs,
+            blogSlugs, portfolioSlugs
+        }}>
             {children}
         </AllContext.Provider>
     )

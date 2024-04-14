@@ -11,16 +11,23 @@ import { addDoc, collection } from 'firebase/firestore';
 import Submitting from '../components/Submitting';
 import Submitted from '../components/Sumbitted';
 import AdminButton from '../components/AdminButton';
+import { useContext } from 'react';
+import { AllContext } from '../../context/AllContext';
+import { useEffect } from 'react';
+import { slugValidation } from '../../public/js/utils/slugValidation';
 
 export default function BlogCreate() {
 
-    const [admin] = useAdmin(auth);
+    const [admin, loading] = useAdmin(auth);
     const navigate = useNavigate();
-    !admin && navigate('/');
+
+    !admin && !loading && navigate('/');
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedVideo, setSelectedVideo] = useState(null);
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
+    const [slugError, setSlugError] = useState('');
+    const { blogSlugs, portfolioSlugs } = useContext(AllContext);
 
 
     const [formData, setFormData] = useState({
@@ -34,6 +41,9 @@ export default function BlogCreate() {
         answer: 'answer',
         date: '1988-02-10'
     });
+    useEffect(() => {
+        setSlugError(slugValidation(formData.slug, blogSlugs, portfolioSlugs));
+    }, [formData.slug, blogSlugs, portfolioSlugs])
 
     const [blog, setBlog] = useState({
         id: null,
@@ -57,38 +67,42 @@ export default function BlogCreate() {
     useDynamicHeightField(contentRef, formData.intro);
 
     const submit = async (e) => {
-        e.preventDefault();
-        setSubmitting(true);
-        const imgInput = document.getElementById('img').files[0] || null;
-        const img = imgInput ? imgInput : console.log('no img');
-        const vidInput = document.getElementById('video').files[0] || null;
-        const vid = vidInput ? vidInput : console.log('no vid');
-        const imageRef = ref(storage, `blog/${img.name}`);
-        const videoRef = ref(storage, `blog/${vid.name}`);
-        await uploadBytes(imageRef, img);
-        await uploadBytes(videoRef, vid);
-        const imgURL = await getDownloadURL(imageRef);
-        const vidURL = await getDownloadURL(videoRef);
-        const id = Math.random().toString(36).substring(7);
-        // eslint-disable-next-line no-unused-vars
-        const { question, answer, image, video, ...restFormData } = formData;
-        const updatedBlog = {
-            ...restFormData,
-            content: blog.content,
-            id: id,
-            image: { url: imgURL, path: imageRef.fullPath },
-            video: { url: vidURL, path: videoRef.fullPath }
-        }
-        setBlog(updatedBlog);
-        try {
-            await addDoc(collection(db, 'blog'), updatedBlog)
-            setSubmitted(true);
-            setSubmitting(false);
-        } catch (e) {
-            console.error('Error adding document: ', e);
-            setSubmitting(false);
-        }
+    e.preventDefault();
+    setSubmitting(true);
+    const imgInput = document.getElementById('img').files[0] || null;
+    const img = imgInput ? imgInput : console.log('no img');
+    const vidInput = document.getElementById('video').files[0] || null;
+    const vid = vidInput ? vidInput : console.log('no vid');
+    const imageRef = ref(storage, `blog/${img.name}`);
+    const videoRef = ref(storage, `blog/${vid.name}`);
+    await uploadBytes(imageRef, img);
+    await uploadBytes(videoRef, vid);
+    const imgURL = await getDownloadURL(imageRef);
+    const vidURL = await getDownloadURL(videoRef);
+    const id = Math.random().toString(36).substring(7);
+    // eslint-disable-next-line no-unused-vars
+    const { question, answer, intro, outro, image, video, ...restFormData } = formData;
+    const updatedBlog = {
+        ...restFormData,
+        content: blog.content,
+        id: id,
+        image: { url: imgURL, path: imageRef.fullPath },
+        video: { url: vidURL, path: videoRef.fullPath },
+        question: question.split('\n'),
+        answer: answer.split('\n'),
+        intro: intro.split('\n'),
+        outro: outro.split('\n')
     }
+    setBlog(updatedBlog);
+    try {
+        await addDoc(collection(db, 'blog'), updatedBlog)
+        setSubmitted(true);
+        setSubmitting(false);
+    } catch (e) {
+        console.error('Error adding document: ', e);
+        setSubmitting(false);
+    }
+}
 
     return (
         <div className="screen-container">
@@ -103,9 +117,8 @@ export default function BlogCreate() {
             ) : null}
             {!submitting && !submitted ?
                 (<>
-                    <AdminButton func={submit} />
                     <div className="blog">
-                        <div className="blog-container">
+                        <form className="blog-container" onSubmit={submit}>
                             <div className="blog-image">
                                 <input type="file" id='img' accept="image/*" onChange={(e) => handleChangeImage(e, setSelectedImage)} />
                                 {selectedImage && <img src={selectedImage} className="blog-image__img" alt="Selected" />}
@@ -122,6 +135,7 @@ export default function BlogCreate() {
                                     value={formData.slug}
                                     onChange={(e) => handleChangeText(e, formData, setFormData)}
                                 />
+                                <p className="form-error">{slugError}</p>
                                 <BlogContent type='textarea' name='intro' value={formData.intro} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={contentRef} />
                                 <BlogContent type='date' name='date' value={formData.date} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={contentRef} />
 
@@ -147,9 +161,9 @@ export default function BlogCreate() {
                                     <BlogContent type='textarea' name='outro' value={formData.outro} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={contentRef} />
 
                                 </div>
-
                             </div>
-                        </div>
+                            <input type="submit" value="Submit" className="button" disabled={slugError} />
+                        </form>
                     </div>
                 </>)
                 : null}

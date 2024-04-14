@@ -386,6 +386,14 @@ ion-icon {
 .button-edit {
   margin-right: 2rem;
 }
+.button__deleteImage {
+  position: absolute;
+  color: white;
+  font-size: 0.5rem;
+  top: 0.2rem;
+  right: 0.2rem;
+  z-index: 1000;
+}
 
 .about-container {
   font-family: "Playfair Display", serif;
@@ -617,6 +625,18 @@ ion-icon {
 }
 .form-upload {
   margin: 0 auto;
+  width: 50vw;
+}
+.form-error {
+  color: red;
+  font-size: 1rem;
+}
+.form-admin__image {
+  height: 100%;
+  display: flex;
+}
+.form-admin__image-preview {
+  height: 100%;
 }
 
 .imageView {
@@ -682,7 +702,7 @@ ion-icon {
   height: 2px;
 }
 .imageView__thumbnail {
-  height: 100%;
+  width: 100%;
 }
 .imageView__thumbnail-container {
   display: flex;
@@ -690,6 +710,7 @@ ion-icon {
   align-items: center;
   width: 15rem;
   overflow: hidden;
+  position: relative;
   cursor: pointer;
 }
 .imageView__thumbnail-container:not(:last-child) {
@@ -808,17 +829,42 @@ ion-icon {
 }
 .blog__preview-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-bottom: 2rem;
+  height: 63rem;
+}
+@media (max-width: 31.25em) {
+  .blog__preview-container {
+    flex-direction: column;
+    height: unset;
+  }
+}
+.blog__preview-content {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+@media (max-width: 31.25em) {
+  .blog__preview-content {
+    width: 100%;
+    margin-left: unset;
+    transform: translateX(-1rem);
+  }
 }
 .blog__preview-title {
   width: -moz-max-content;
   width: max-content;
   cursor: pointer;
+  margin: 2rem auto;
 }
 .blog__preview-image {
   width: 40%;
-  margin-bottom: 2rem;
+  margin: auto;
+  max-height: 41rem;
+  overflow: clip;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 @media (max-width: 31.25em) {
   .blog__preview-image {

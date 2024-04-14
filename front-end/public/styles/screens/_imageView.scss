@@ -67,7 +67,7 @@
     }
 
     &__thumbnail {
-        height: 100%;
+        width: 100%;
 
         &-container {
             display: flex;
@@ -75,8 +75,8 @@
             align-items: center;
             width: 15rem;
             overflow: hidden;
+            position: relative;
             cursor: pointer;
-
             &:not(:last-child) {
                 margin-right: 1rem;
             }

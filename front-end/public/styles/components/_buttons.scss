@@ -26,4 +26,14 @@
     &-edit {
         margin-right: 2rem
     }
+
+    &__deleteImage {
+        position: absolute;
+        color: white;
+        font-size: 0.5rem;
+        top: 0.2rem;
+        right: 0.2rem;
+        z-index: 1000;
+      
+    }
 }

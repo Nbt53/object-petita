@@ -111,6 +111,23 @@
     }
 
     &-upload {
-        margin: 0 auto
+        margin: 0 auto;
+        width: 50vw;
+    }
+
+    &-error {
+        color: red;
+        font-size: 1rem;
+    }
+
+    &-admin {
+        &__image {
+            height: 100%;
+            display: flex;
+
+            &-preview {
+                height: 100%;
+            }
+        }
     }
 }
