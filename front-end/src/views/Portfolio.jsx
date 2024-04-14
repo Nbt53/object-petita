@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAdmin } from "../../public/js/checkAdmin";
 import { AllContext } from "../../context/AllContext";
 import { useContext } from "react";
+import AdminButton from "../components/AdminButton";
 
 export default function Portfolio() {
 
@@ -40,9 +41,7 @@ export default function Portfolio() {
     }
     return (
         <section className="screen-container">
-            {admin ? <div className="portfolio-admin" onClick={uploadNavigate}>
-
-            </div> : null}
+            <AdminButton func={uploadNavigate} />
             <div className="portfolio">
 
                 {renderPhotos()}

@@ -394,6 +394,20 @@ ion-icon {
   right: 0.2rem;
   z-index: 1000;
 }
+.button-admin {
+  position: absolute;
+  display: flex;
+  width: 4rem;
+  height: 4rem;
+  top: 1rem;
+  right: 1rem;
+  color: cornsilk;
+  border-radius: 100%;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+}
 
 .about-container {
   font-family: "Playfair Display", serif;
@@ -509,20 +523,6 @@ ion-icon {
     margin: unset;
     margin-bottom: 2rem;
   }
-}
-.portfolio-admin {
-  position: absolute;
-  display: flex;
-  width: 4rem;
-  height: 4rem;
-  top: 0rem;
-  right: 0rem;
-  background-color: rgba(255, 0, 0, 0.5);
-  border-radius: 100%;
-  text-align: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 1000;
 }
 
 .form {

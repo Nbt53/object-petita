@@ -34,6 +34,21 @@
         top: 0.2rem;
         right: 0.2rem;
         z-index: 1000;
-      
+
+    }
+
+    &-admin {
+        position: absolute;
+        display: flex;
+        width: 4rem;
+        height: 4rem;
+        top: 1rem;
+        right: 1rem;
+        color: cornsilk;
+        border-radius: 100%;
+        text-align: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1000;
     }
 }
