@@ -12,13 +12,10 @@
 
     &-text {
         
-        text-align: center;
-        margin: auto;
 
         &-container {
             padding: 0 2rem;
             margin: auto;
-            text-align: center;
 
             @include respond(tab-land) {
                 margin-top: 2rem;
