@@ -12,49 +12,48 @@ export const AllProvider = ({ children }) => {
 
     ////////////////Fetch Portfolio ///////////////////////
 
- useEffect(() => {
-    const fetchData = () => {
-        try {
-            const q = query(collection(db, "portfolio"), orderBy("date"));
-            const unsubscribe = onSnapshot(q, (querySnapshot) => {
-                const documents = [];
-
-                querySnapshot.forEach((doc) => {
-                    const id = doc.id;
-                    const artData = doc.data();
-                    documents.push({ [id]: artData });
-                });
-                setPortfolioData(documents);
-            });
-
-            // Clean up the onSnapshot listener when the component is unmounted
-            return () => unsubscribe();
-        } catch (error) {
-            console.error("Error fetching data: ", error);
-        }
-    }
-    fetchData();
-}, []);
-
-    ////////////////Fetch Blogs ///////////////////////
-
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData = () => {
             try {
-                const ref = await getDocs(collection(db, "blog"));
-                const documents = [];
+                const q = query(collection(db, "portfolio"), orderBy("date", "desc"));
+                const unsubscribe = onSnapshot(q, (querySnapshot) => {
+                    const documents = [];
 
-                ref.forEach((doc) => {
-
-                    const blogData = doc.data();
-                    documents.push(blogData);
+                    querySnapshot.forEach((doc) => {
+                        const id = doc.id;
+                        const artData = doc.data();
+                        documents.push({ [id]: artData });
+                    });
+                    setPortfolioData(documents);
                 });
-                setBlogs(documents);
+
+                // Clean up the onSnapshot listener when the component is unmounted
+                return () => unsubscribe();
             } catch (error) {
                 console.error("Error fetching data: ", error);
             }
         }
         fetchData();
+    }, []);
+
+    ////////////////Fetch Blogs ///////////////////////
+
+    useEffect(() => {
+        const q = query(collection(db, "blog"), orderBy("date", "desc"));
+
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const documents = [];
+
+            snapshot.forEach((doc) => {
+                const blogData = doc.data();
+                documents.push(blogData);
+            });
+
+            setBlogs(documents);
+        });
+
+        // Clean up the onSnapshot listener when the component is unmounted
+        return () => unsubscribe();
     }, []);
 
     //////////list slugs for validation //////////////////
