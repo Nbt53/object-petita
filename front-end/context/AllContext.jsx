@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { db } from "../src/config/Firebase";
-import { collection, getDocs, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 
 export const AllContext = createContext();
 

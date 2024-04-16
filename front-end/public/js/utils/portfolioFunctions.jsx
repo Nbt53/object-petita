@@ -1,6 +1,7 @@
 import { arrayRemove, collection, deleteDoc, doc, getDocs, getFirestore, query, updateDoc, where } from "firebase/firestore";
 import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "../../../src/config/Firebase";
+import { arrayUnion } from "firebase/firestore";
 
 ///////////////////////  Delete Image ///////////////////////
 
@@ -78,19 +79,35 @@ const renderImages = (docData, adminMode, setMainImage, documentId, newImages, s
     )
 }
 
-const handleDelete = async (docData, navigate) => {
+
+const handleDelete = async (docData, navigate, setLoading) => {
+    setLoading(true)
     try {
         const q = query(collection(db, "portfolio"), where("id", "==", docData.id));
         const querySnapshot = await getDocs(q);
-        querySnapshot.forEach(async (doc) => {
+        const storage = getStorage();
+
+        for (const doc of querySnapshot.docs) {
+            const docData = doc.data();
+
+            // Delete images from Firebase Storage
+            for (const path of docData.imagePath) {
+                const imageRef = ref(storage, path);
+                await deleteObject(imageRef);
+            }
+
+            // Delete document from Firestore
             await deleteDoc(doc.ref);
-        });
-        navigate('/portfolio');
+        }
+        
     } catch (e) {
         console.log(e);
+    }finally {
+        setLoading(false);
+        navigate('/');
     }
 };
-import { arrayUnion } from "firebase/firestore";
+
 
 const handleEdit = async (setLoading, docData, textForTextarea, formTitle, newImages, setNewImages) => {
     setLoading(true);

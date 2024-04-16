@@ -93,7 +93,7 @@ export default function ImageView() {
                         }
                         {adminMode ? <div className="imageView-admin">
                             <button className="button button-edit" onClick={() => portfolio.handleEdit(setLoading, docData, textForTextarea, formTitle, newImages, setNewImages)}>Edit</button>
-                            <button className="button button-delete" onClick={() => portfolio.handleDelete(docData, navigate)}>
+                            <button className="button button-delete" onClick={() => portfolio.handleDelete(docData, navigate, setLoading)}>
                                 Delete</button>
                         </div> : null}
                     </div>
