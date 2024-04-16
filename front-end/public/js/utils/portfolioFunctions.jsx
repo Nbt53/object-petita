@@ -1,6 +1,7 @@
 import { arrayRemove, collection, deleteDoc, doc, getDocs, getFirestore, query, updateDoc, where } from "firebase/firestore";
 import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "../../../src/config/Firebase";
+
 ///////////////////////  Delete Image ///////////////////////
 
 
@@ -11,11 +12,12 @@ const deleteImage = async (image, path, documentId) => {
         const storage = getStorage();
         const imageRef = ref(storage, path);
 
-        deleteObject(imageRef).then(() => {
-
-        }).catch((error) => {
+        try {
+            await deleteObject(imageRef);
+        } catch (error) {
             console.error('Failed to delete image from Firebase Storage', error);
-        });
+            return;  // If the image deletion fails, don't update Firestore
+        }
 
         // Delete from Firestore
         const db = getFirestore();
@@ -27,11 +29,11 @@ const deleteImage = async (image, path, documentId) => {
         });
         alert('Image deleted successfully');
     }
+};
 
-}
 
 const renderImages = (docData, adminMode, setMainImage, documentId, newImages, setNewImages, newImagesUrl, setNewImagesURL) => {
-    
+
     return (
         <div className="imageView__preview">
             {docData.img.map((image, index) => {
@@ -42,7 +44,7 @@ const renderImages = (docData, adminMode, setMainImage, documentId, newImages, s
                     >
                         {adminMode ?
                             <div className="button__deleteImage" onClick={() => portfolio.deleteImage(image, path, documentId)}>
-                                <ion-icon style={{color: 'red'}} name="trash-outline"></ion-icon>
+                                <ion-icon style={{ color: 'red' }} name="trash-outline"></ion-icon>
                             </div> : null}
                         <img src={image} alt={docData.name} className="imageView__thumbnail" />
                     </div>
@@ -60,7 +62,7 @@ const renderImages = (docData, adminMode, setMainImage, documentId, newImages, s
                     {newImagesUrl ?
                         <div className="imageView__thumbnail-container">
                             <div className="button__deleteImage" onClick={() => addImage()}>
-                           <ion-icon style={{color: 'green'}} name="add-circle"></ion-icon>
+                                <ion-icon style={{ color: 'green' }} name="add-circle"></ion-icon>
                             </div>
                             <img src={newImagesUrl} alt="" className="form-admin__image-preview" />
                         </div>
@@ -90,29 +92,30 @@ const handleDelete = async (docData, navigate) => {
 };
 import { arrayUnion } from "firebase/firestore";
 
-const handleEdit = async (setLoading, docData, textForTextarea, formTitle, newImages) => {
+const handleEdit = async (setLoading, docData, textForTextarea, formTitle, newImages, setNewImages) => {
     setLoading(true);
     let imageUrl = null;
     let imagePath = null;
+    let updateData = {
+        name: formTitle,
+        description: textForTextarea.split('\n')
+    };
 
-    if(newImages) {
+    if (newImages) {
         const storageRef = ref(storage, `images/${newImages.name}`);
         await uploadBytes(storageRef, newImages);
         imageUrl = await getDownloadURL(storageRef);
         imagePath = `images/${newImages.name}`;
+        updateData.img = arrayUnion(imageUrl);
+        updateData.imagePath = arrayUnion(imagePath);
     }
 
     try {
         const q = query(collection(db, "portfolio"), where("id", "==", docData.id));
         const querySnapshot = await getDocs(q);
-        const description = textForTextarea.split('\n');
-        await Promise.all(querySnapshot.docs.map((doc) => updateDoc(doc.ref, { 
-            name: formTitle, 
-            description: description, 
-            img: arrayUnion(imageUrl), 
-            imagePath: arrayUnion(imagePath) 
-        })));
+        await Promise.all(querySnapshot.docs.map((doc) => updateDoc(doc.ref, updateData)));
         setLoading(false);
+        setNewImages(null);
     } catch (e) {
         console.log(e);
     }
@@ -131,7 +134,7 @@ const handleChangeFile = (event, setNewImages, setNewImagesURL) => {
 }
 
 const addImage = () => {
-    
+
 }
 
 export const portfolio = {

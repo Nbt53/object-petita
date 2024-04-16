@@ -1,6 +1,4 @@
-import { auth } from "../config/Auth"
 import { useNavigate } from "react-router-dom";
-import { useAdmin } from "../../public/js/checkAdmin";
 import { AllContext } from "../../context/AllContext";
 import { useContext } from "react";
 import AdminButton from "../components/AdminButton";
@@ -8,7 +6,7 @@ import AdminButton from "../components/AdminButton";
 export default function Portfolio() {
 
     const navigate = useNavigate()
-    const [admin] = useAdmin(auth);
+
     const { portfolioData } = useContext(AllContext);
 
     const handlePress = (docData) => {

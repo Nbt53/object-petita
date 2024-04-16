@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { db } from "../src/config/Firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, onSnapshot, orderBy, query } from "firebase/firestore";
 
 export const AllContext = createContext();
 
@@ -12,24 +12,29 @@ export const AllProvider = ({ children }) => {
 
     ////////////////Fetch Portfolio ///////////////////////
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const ref = await getDocs(collection(db, "portfolio"));
+ useEffect(() => {
+    const fetchData = () => {
+        try {
+            const q = query(collection(db, "portfolio"), orderBy("date"));
+            const unsubscribe = onSnapshot(q, (querySnapshot) => {
                 const documents = [];
 
-                ref.forEach((doc) => {
+                querySnapshot.forEach((doc) => {
                     const id = doc.id;
                     const artData = doc.data();
                     documents.push({ [id]: artData });
                 });
                 setPortfolioData(documents);
-            } catch (error) {
-                console.error("Error fetching data: ", error);
-            }
+            });
+
+            // Clean up the onSnapshot listener when the component is unmounted
+            return () => unsubscribe();
+        } catch (error) {
+            console.error("Error fetching data: ", error);
         }
-        fetchData();
-    }, []);
+    }
+    fetchData();
+}, []);
 
     ////////////////Fetch Blogs ///////////////////////
 

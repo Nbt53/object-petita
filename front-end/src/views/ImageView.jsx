@@ -20,9 +20,9 @@ export default function ImageView() {
     const [textWithParagraphs, setTextWithParagraphs] = useState([]);
     const navigate = useNavigate();
     const [documentId, setDocumentId] = useState(null);
-    const [newImages, setNewImages] = useState([]);
+    const [newImages, setNewImages] = useState(null);
     const [newImagesUrl, setNewImagesURL] = useState(null);
-  
+
     useEffect(() => {
         const fetchDocument = async () => {
             const document = await getDocument("portfolio", docData.id);
@@ -92,7 +92,7 @@ export default function ImageView() {
                             </>
                         }
                         {adminMode ? <div className="imageView-admin">
-                            <button className="button button-edit" onClick={() => portfolio.handleEdit(setLoading, docData, textForTextarea, formTitle, newImages)}>Edit</button>
+                            <button className="button button-edit" onClick={() => portfolio.handleEdit(setLoading, docData, textForTextarea, formTitle, newImages, setNewImages)}>Edit</button>
                             <button className="button button-delete" onClick={() => portfolio.handleDelete(docData, navigate)}>
                                 Delete</button>
                         </div> : null}
