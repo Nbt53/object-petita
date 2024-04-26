@@ -88,12 +88,13 @@ export default function User() {
                             <input type="submit" value="Save" className="button" />
                         </div>
                     </form>
-                </div>
-
-                <div className="button__container">
+                    <div className="button__container">
                     <button value="Delete Profile" className="button button-delete" onClick={handleDeleteAccount} >Delete Account </button>
                     <button value="Sign Out" className="button button-signOut" onClick={() => signOut(navigate)} >Sign Out </button>
                 </div>
+                </div>
+
+              
 
             </section>
         </>
