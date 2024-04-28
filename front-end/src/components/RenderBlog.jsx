@@ -31,7 +31,10 @@ export default function RenderBlog({ blog }) {
                     <p className="blog__date mb-medium"> April 10th 2024</p>
                     {renderParagraphs(blog.intro, "blog__text")}
                     <p className="blog__date">{blog.date}</p>
-                    <video src={blog.video.url} className="blog-video mb-medium" controls ></video>
+                    {blog.video.url ?
+                        <video src={blog.video.url} className="blog-video mb-medium" controls ></video> : null
+                    }
+
                     {renderInterview()}
                     {renderParagraphs(blog.outro, "blog__outro")}
                 </div>

@@ -19,6 +19,9 @@
     }
 
     &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         padding: 2rem;
         width: 50%;
         min-height: 100%;
@@ -77,6 +80,7 @@
             overflow: hidden;
             position: relative;
             cursor: pointer;
+
             &:not(:last-child) {
                 margin-right: 1rem;
             }

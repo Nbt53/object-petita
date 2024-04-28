@@ -66,19 +66,35 @@ export default function BlogCreate() {
 
     useDynamicHeightField(contentRef, formData.intro);
 
-    const submit = async (e) => {
+   const submit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
+    
     const imgInput = document.getElementById('img').files[0] || null;
-    const img = imgInput ? imgInput : console.log('no img');
     const vidInput = document.getElementById('video').files[0] || null;
-    const vid = vidInput ? vidInput : console.log('no vid');
-    const imageRef = ref(storage, `blog/${img.name}`);
-    const videoRef = ref(storage, `blog/${vid.name}`);
-    await uploadBytes(imageRef, img);
-    await uploadBytes(videoRef, vid);
-    const imgURL = await getDownloadURL(imageRef);
-    const vidURL = await getDownloadURL(videoRef);
+    let imgURL = null;
+    let vidURL = null;
+    let imageFullPath = null;
+    let videoFullPath = null;
+
+    if (imgInput) {
+        const imageRef = ref(storage, `blog/${imgInput.name}`);
+        await uploadBytes(imageRef, imgInput);
+        imgURL = await getDownloadURL(imageRef);
+        imageFullPath = imageRef.fullPath;
+    } else {
+        console.log('no img');
+    }
+
+    if (vidInput) {
+        const videoRef = ref(storage, `blog/${vidInput.name}`);
+        await uploadBytes(videoRef, vidInput);
+        vidURL = await getDownloadURL(videoRef);
+        videoFullPath = videoRef.fullPath;
+    } else {
+        console.log('no vid');
+    }
+
     const id = Math.random().toString(36).substring(7);
     // eslint-disable-next-line no-unused-vars
     const { question, answer, intro, outro, image, video, ...restFormData } = formData;
@@ -86,8 +102,8 @@ export default function BlogCreate() {
         ...restFormData,
         content: blog.content,
         id: id,
-        image: { url: imgURL, path: imageRef.fullPath },
-        video: { url: vidURL, path: videoRef.fullPath },
+        image: { url: imgURL, path: imageFullPath },
+        video: { url: vidURL, path: videoFullPath },
         question: question.split('\n'),
         answer: answer.split('\n'),
         intro: intro.split('\n'),
