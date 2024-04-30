@@ -11,15 +11,14 @@
     }
 
     &-text {
-        
 
         &-container {
-            padding: 0 2rem;
+            padding: 0 4rem;
             margin: auto;
 
             @include respond(tab-land) {
                 margin-top: 2rem;
-                padding: unset;
+                padding: 0 2rem;
             }
         }
     }
@@ -38,7 +37,7 @@
         margin-top: 2rem;
 
         &-item {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             list-style: none;
         }
     }

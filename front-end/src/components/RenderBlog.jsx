@@ -10,6 +10,7 @@ export default function RenderBlog({ blog }) {
     }
 
     const renderInterview = () => {
+        console.log(blog)
         return blog.content.interview.map((interview, index) => {
             return (
                 <div key={index} className="blog__interview mb-small">

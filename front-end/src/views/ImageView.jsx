@@ -89,6 +89,7 @@ export default function ImageView() {
                                 <h3 className="imageView__title">{docData.name}</h3>
                                 {portfolio.renderImages(docData, adminMode, setMainImage)}
                                 {textWithParagraphs}
+                                <p className="imageView__price">£{docData.price}</p>
                             </>
                         }
                         {adminMode ? <div className="imageView-admin">

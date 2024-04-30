@@ -48,6 +48,11 @@
         margin-bottom: 2rem;
     }
 
+    &__price {
+        font-size: 1.5rem;
+        color: #8a8a8a;
+    }
+
     &__preview {
         display: flex;
         flex-direction: row;

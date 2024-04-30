@@ -18,15 +18,18 @@ const handleChangeVideo = (e, setSelectedVideo) => {
 }
 
 const addInterviewSection = (setBlog, blog, questionKey, formData, setQuestionKey) => {
-    setBlog({
-        blog, content: {
-            interview: [...blog.content.interview, {
-                key: questionKey, question: formData.question, answer: formData.answer
+    setBlog(prevBlog => ({
+        ...prevBlog,
+        content: {
+            ...prevBlog.content,
+            interview: [...prevBlog.content.interview, {
+                key: questionKey, 
+                question: formData.question, 
+                answer: formData.answer
             }]
         }
-    })
+    }));
     setQuestionKey(questionKey + 1);
-    console.log(blog)
 };
 
 export { handleChangeText, handleChangeImage, handleChangeVideo, addInterviewSection }

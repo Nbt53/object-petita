@@ -47,38 +47,57 @@ export default function EditBlog({ blog }) {
     useDynamicHeightField(contentRef, formData.intro);
 
     const submit = async (e) => {
-        e.preventDefault();
-        setSubmitting(true);
-        const imgInput = document.getElementById('img').files[0] || null;
-        const img = imgInput ? imgInput : console.log('no img');
-        const vidInput = document.getElementById('video').files[0] || null;
-        const vid = vidInput ? vidInput : console.log('no vid');
-        const imageRef = ref(storage, `blog/${img.name}`);
-        const videoRef = ref(storage, `blog/${vid.name}`);
-        await uploadBytes(imageRef, img);
-        await uploadBytes(videoRef, vid);
-        const imgURL = await getDownloadURL(imageRef);
-        const vidURL = await getDownloadURL(videoRef);
-        const id = Math.random().toString(36).substring(7);
-        // eslint-disable-next-line no-unused-vars
-        const { question, answer, image, video, ...restFormData } = formData;
-        const updatedBlog = {
-            ...restFormData,
-            content: blog.content,
-            id: id,
-            image: { url: imgURL, path: imageRef.fullPath },
-            video: { url: vidURL, path: videoRef.fullPath }
-        }
-        setBlog(updatedBlog);
-        try {
-            await addDoc(collection(db, 'blog'), updatedBlog)
-            setSubmitted(true);
-            setSubmitting(false);
-        } catch (e) {
-            console.error('Error adding document: ', e);
-            setSubmitting(false);
-        }
+    e.preventDefault();
+    setSubmitting(true);
+    const imgInput = document.getElementById('img').files[0] || null;
+    const vidInput = document.getElementById('video').files[0] || null;
+    let imgURL = null;
+    let vidURL = null;
+    let imageFullPath = null;
+    let videoFullPath = null;
+
+    if (imgInput) {
+        const imageRef = ref(storage, `blog/${imgInput.name}`);
+        await uploadBytes(imageRef, imgInput);
+        imgURL = await getDownloadURL(imageRef);
+        imageFullPath = imageRef.fullPath;
+    } else {
+        console.log('no img');
     }
+
+    if (vidInput) {
+        const videoRef = ref(storage, `blog/${vidInput.name}`);
+        await uploadBytes(videoRef, vidInput);
+        vidURL = await getDownloadURL(videoRef);
+        videoFullPath = videoRef.fullPath;
+    } else {
+        console.log('no vid');
+    }
+
+    const id = Math.random().toString(36).substring(7);
+    // eslint-disable-next-line no-unused-vars
+    const { question, answer, image, video, ...restFormData } = formData;
+    const updatedBlog = {
+        ...restFormData,
+        content: blog.content,
+        id: id,
+        image: { url: imgURL, path: imageFullPath },
+        video: { url: vidURL, path: videoFullPath },
+        question: question.split('\n'),
+        answer: answer.split('\n'),
+        intro: intro.split('\n'),
+        outro: outro.split('\n')
+    }
+    setBlog(updatedBlog);
+    try {
+        await addDoc(collection(db, 'blog'), updatedBlog)
+        setSubmitted(true);
+        setSubmitting(false);
+    } catch (e) {
+        console.error('Error adding document: ', e);
+        setSubmitting(false);
+    }
+}
 
     return (
         <div className="screen-container">
@@ -93,12 +112,12 @@ export default function EditBlog({ blog }) {
             ) : null}
             {!submitting && !submitted ?
                 (<>
-                   
+
                     <div className="blog">
                         <div className="blog-container">
                             <div className="blog-image">
                                 <input type="file" id='img' accept="image/*" onChange={(e) => handleChangeImage(e, setSelectedImage)} />
-                                { <img src={selectedImage || blog.image.url} className="blog-image__img" alt="Selected" />}
+                                {<img src={selectedImage || blog.image.url} className="blog-image__img" alt="Selected" />}
 
                             </div>
                             <div className="blog-content">
@@ -116,7 +135,7 @@ export default function EditBlog({ blog }) {
                                 <BlogContent type='date' name='date' value={formData.date} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={contentRef} />
 
                                 <input type="file" id='video' accept="video/*" onChange={(e) => handleChangeVideo(e, setSelectedVideo)} />
-                                { <video src={selectedVideo || blog.video.url} className="blog-video mb-medium" ></video>}
+                                {<video src={selectedVideo || blog.video.url} className="blog-video mb-medium" ></video>}
 
                                 <div className="blog__interview">
                                     <AdminButton func={() => addInterviewSection(setBlog, editedBlog, questionKey, formData, setQuestionKey)} />
@@ -140,6 +159,7 @@ export default function EditBlog({ blog }) {
 
                             </div>
                         </div>
+                        <div className="btn" onClick={submit}>submit</div>
                     </div>
                 </>)
                 : null}

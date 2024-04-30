@@ -425,13 +425,13 @@ ion-icon {
   }
 }
 .about-text-container {
-  padding: 0 2rem;
+  padding: 0 4rem;
   margin: auto;
 }
 @media (max-width: 75em) {
   .about-text-container {
     margin-top: 2rem;
-    padding: unset;
+    padding: 0 2rem;
   }
 }
 @media (max-width: 75em) {
@@ -445,7 +445,7 @@ ion-icon {
   margin-top: 2rem;
 }
 .about-list-item {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   list-style: none;
 }
 
@@ -698,6 +698,10 @@ ion-icon {
 .imageView__body {
   margin-bottom: 2rem;
 }
+.imageView__price {
+  font-size: 1.5rem;
+  color: #8a8a8a;
+}
 .imageView__preview {
   display: flex;
   flex-direction: row;
@@ -887,8 +891,7 @@ ion-icon {
   }
 }
 .blog__preview-title {
-  width: -moz-max-content;
-  width: max-content;
+  width: 100%;
   cursor: pointer;
   margin: 2rem auto;
 }
