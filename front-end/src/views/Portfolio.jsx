@@ -18,7 +18,6 @@ export default function Portfolio() {
 
     }
 
-
     const renderPhotos = () => {
         if (Array.isArray(portfolioData)) {
             return portfolioData.map((item, index) => {

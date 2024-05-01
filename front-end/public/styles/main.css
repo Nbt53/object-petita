@@ -858,6 +858,9 @@ ion-icon {
   flex-direction: column;
   margin-bottom: 2rem;
 }
+.blog__interview-section .ionicon {
+  stroke: green;
+}
 .blog__date {
   color: #868e96;
   font-size: 1.4rem;

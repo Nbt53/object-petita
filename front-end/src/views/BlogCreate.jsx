@@ -82,19 +82,13 @@ export default function BlogCreate() {
             await uploadBytes(imageRef, imgInput);
             imgURL = await getDownloadURL(imageRef);
             imageFullPath = imageRef.fullPath;
-        } else {
-            console.log('no img');
         }
-
         if (vidInput) {
             const videoRef = ref(storage, `blog/${vidInput.name}`);
             await uploadBytes(videoRef, vidInput);
             vidURL = await getDownloadURL(videoRef);
             videoFullPath = videoRef.fullPath;
-        } else {
-            console.log('no vid');
         }
-
         const id = Math.random().toString(36).substring(7);
         // eslint-disable-next-line no-unused-vars
         const { question, answer, intro, outro, image, video, ...restFormData } = formData;
@@ -165,18 +159,18 @@ export default function BlogCreate() {
                                 <div className="blog__interview">
                                     <AdminButton func={() => addInterviewSection(setBlog, blog, questionKey, formData, setQuestionKey)} />
                                     {blog.content.interview.map((section) => {
-
                                         return (
                                             <div key={section.key} className="blog__interview-section">
                                                 <BlogContent type='textarea' name={`question`} value={section.question} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={questionRef} />
                                                 <BlogContent type='textarea' name={`answer`} value={section.answer} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={answerRef} />
-                                            </div>
+                                                <ion-icon name="checkmark" style={{ color: 'green' }}></ion-icon>                                            </div>
                                         )
                                     })
                                     }
                                     <div className="blog__interview-section">
                                         <BlogContent type='textarea' name={`question`} value={formData[`question`]} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={questionRef} />
                                         <BlogContent type='textarea' name={`answer`} value={formData[`answer`]} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={answerRef} />
+                                        <ion-icon name="close" style={{ color: 'red' }}></ion-icon>
                                     </div>
                                     <BlogContent type='textarea' name='outro' value={formData.outro} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={contentRef} />
 
