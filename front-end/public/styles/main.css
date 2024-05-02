@@ -754,6 +754,9 @@ ion-icon {
     margin-left: unset;
   }
 }
+.blog__text:not(:last-child) {
+  margin-bottom: 1rem;
+}
 .blog-image {
   height: 50rem;
   margin-bottom: 2rem;

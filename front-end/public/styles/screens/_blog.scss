@@ -11,6 +11,12 @@
         }
     }
 
+    &__text {
+        &:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+    }
+
     &-image {
         height: 50rem;
         margin-bottom: 2rem;
