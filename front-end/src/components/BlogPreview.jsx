@@ -10,7 +10,7 @@ export default function BlogPreview({ blog, viewBlog }) {
                     onClick={() => viewBlog(blog.slug)}>
                     {blog.title}
                 </h3>
-                <p className="blog__text blog__preview-text mb-medium">{blog.intro}</p>
+                <p className="blog__text blog__preview-text mb-medium">{blog.intro[0].substring(0, 400)}...</p>
 
             </div>
 

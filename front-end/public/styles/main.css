@@ -823,7 +823,7 @@ ion-icon {
   font-family: "Playfair Display", serif;
   font-weight: 700;
   margin-bottom: 2rem;
-  width: 50%;
+  width: 70%;
 }
 @media (max-width: 31.25em) {
   .blog__question {
@@ -835,7 +835,7 @@ ion-icon {
   font-weight: 400;
   margin-bottom: 2rem;
   align-self: last baseline;
-  width: 50%;
+  width: 70%;
 }
 @media (max-width: 31.25em) {
   .blog__answer {
@@ -847,6 +847,7 @@ ion-icon {
   display: flex;
   flex-direction: column;
   position: relative;
+  margin-top: 3rem;
 }
 @media (max-width: 31.25em) {
   .blog__interview {
