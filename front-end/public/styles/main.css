@@ -754,6 +754,9 @@ ion-icon {
     margin-left: unset;
   }
 }
+.blog__text {
+  font-style: italic;
+}
 .blog__text:not(:last-child) {
   margin-bottom: 1rem;
 }
@@ -826,25 +829,11 @@ ion-icon {
   font-family: "Playfair Display", serif;
   font-weight: 700;
   margin-bottom: 2rem;
-  width: 70%;
-}
-@media (max-width: 31.25em) {
-  .blog__question {
-    width: unset;
-  }
 }
 .blog__answer {
   font-family: "Playfair Display", serif;
   font-weight: 400;
   margin-bottom: 2rem;
-  align-self: last baseline;
-  width: 70%;
-}
-@media (max-width: 31.25em) {
-  .blog__answer {
-    width: unset;
-    align-self: unset;
-  }
 }
 .blog__interview {
   display: flex;

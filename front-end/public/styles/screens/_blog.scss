@@ -12,6 +12,8 @@
     }
 
     &__text {
+        font-style: italic;
+
         &:not(:last-child) {
             margin-bottom: 1rem;
         }
@@ -94,25 +96,13 @@
         font-family: $font-body;
         font-weight: 700;
         margin-bottom: 2rem;
-        width: 70%;
 
-        @include respond(phone-small) {
-            width: unset;
-        }
     }
 
     &__answer {
         font-family: $font-body;
         font-weight: 400;
         margin-bottom: 2rem;
-        align-self: last baseline;
-        width: 70%;
-
-        @include respond(phone-small) {
-            width: unset;
-            align-self: unset;
-
-        }
 
     }
 
