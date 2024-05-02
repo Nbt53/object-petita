@@ -3,13 +3,11 @@ import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, signInWithGoogle } from "../config/Auth";
 import SignInForm from "./SignInForm";
-import { useAdmin } from "../../public/js/checkAdmin";
 
 export function NavLinks() {
     const [currentUser, setCurrentUser] = useState(null);
     const [showSignIn, setShowSignIn] = useState(false);
-    const [adminStatus, setAdminStatus] = useAdmin(auth);
-    
+
     const handleSignIn = async () => {
         await signInWithGoogle()
             .then(() => {
@@ -39,8 +37,8 @@ export function NavLinks() {
                 <NavLink to="/" className="nav-top__link">Portfolio</NavLink>
                 <NavLink to="/about" className="nav-top__link">About</NavLink>
                 <NavLink to="/contact" className="nav-top__link">Contact</NavLink>
-                {adminStatus ? <NavLink to="/blogs" className="nav-top__link">Puppetry</NavLink> : null
-                }
+                <NavLink to="/blogs" className="nav-top__link">Puppetry</NavLink>
+
             </div>
 
             <div className="nav-top-users">
