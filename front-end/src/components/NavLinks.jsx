@@ -34,10 +34,10 @@ export function NavLinks() {
     return (
         <div className="nav-top">
             <div className="nav-top-links">
-                <NavLink to="/" className="nav-top__link">Portfolio</NavLink>
+                <NavLink to="/" className="nav-top__link">Ceramics</NavLink>
                 <NavLink to="/about" className="nav-top__link">About</NavLink>
                 <NavLink to="/contact" className="nav-top__link">Contact</NavLink>
-                <NavLink to="/blogs" className="nav-top__link">Puppetry</NavLink>
+                <NavLink to="/blogs" className="nav-top__link">Interviews</NavLink>
 
             </div>
 
