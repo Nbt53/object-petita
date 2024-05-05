@@ -109,13 +109,14 @@ const handleDelete = async (docData, navigate, setLoading) => {
 };
 
 
-const handleEdit = async (setLoading, docData, textForTextarea, formTitle, newImages, setNewImages) => {
+const handleEdit = async (setLoading, docData, textForTextarea, formTitle, newImages, setNewImages, formPrice) => {
     setLoading(true);
     let imageUrl = null;
     let imagePath = null;
     let updateData = {
         name: formTitle,
-        description: textForTextarea.split('\n')
+        description: textForTextarea.split('\n'),
+        price: formPrice // Add this line
     };
 
     if (newImages) {

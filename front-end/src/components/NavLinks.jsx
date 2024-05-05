@@ -41,13 +41,13 @@ export function NavLinks() {
 
             </div>
 
-            <div className="nav-top-users">
+            {/* <div className="nav-top-users">
                 {currentUser ?
                     <NavLink to="/user" activeClassName='no-underline' ><ion-icon name="person"></ion-icon></NavLink>
                     : <NavLink to="#" activeClassName='no-underline' onClick={handleSignIn}><ion-icon name="person-outline"></ion-icon></NavLink>}
 
             </div>
-            {showSignIn ? <SignInForm setShowSignIn={setShowSignIn} /> : null}
+            {showSignIn ? <SignInForm setShowSignIn={setShowSignIn} /> : null} */}
         </div>
     );
 }

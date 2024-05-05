@@ -15,6 +15,7 @@ export default function ImageView() {
     const [formBody, setFormBody] = useState(docData.description);
     const [adminMode, setAdminMode] = useState(false);
     const [mainImage, setMainImage] = useState(docData.img[0]);
+    const [formPrice, setFormPrice] = useState(docData.price);
     const [loading, setLoading] = useState(false);
     const [textForTextarea, setTextForTextarea] = useState('');
     const [textWithParagraphs, setTextWithParagraphs] = useState([]);
@@ -34,6 +35,9 @@ export default function ImageView() {
 
     const handleTitleChange = (event) => {
         setFormTitle(event.target.value);
+    };
+    const handlePriceChange = (event) => {
+        setFormPrice(event.target.value);
     };
 
     const handleBodyChange = (event) => {
@@ -75,6 +79,14 @@ export default function ImageView() {
                                     setMainImage, documentId,
                                     newImages, setNewImages,
                                     newImagesUrl, setNewImagesURL)}
+                                <input
+                                    type="number"
+                                    id="price"
+                                    name="price"
+                                    className="imageView__price"
+                                    value={formPrice}
+                                    onChange={handlePriceChange}
+                                />
                                 <textarea
                                     type="text"
                                     id="description"
@@ -89,11 +101,11 @@ export default function ImageView() {
                                 <h3 className="imageView__title">{docData.name}</h3>
                                 {portfolio.renderImages(docData, adminMode, setMainImage)}
                                 {textWithParagraphs}
-                                <p className="imageView__price">£{docData.price}</p>
+                                <p className="imageView__price mb-medium">£{docData.price}</p>
                             </>
                         }
                         {adminMode ? <div className="imageView-admin">
-                            <button className="button button-edit" onClick={() => portfolio.handleEdit(setLoading, docData, textForTextarea, formTitle, newImages, setNewImages)}>Edit</button>
+                            <button className="button button-edit" onClick={() => portfolio.handleEdit(setLoading, docData, textForTextarea, formTitle, newImages, setNewImages, formPrice)}>Edit</button>
                             <button className="button button-delete" onClick={() => portfolio.handleDelete(docData, navigate, setLoading)}>
                                 Delete</button>
                         </div> : null}

@@ -32,7 +32,16 @@ export default function RenderBlog({ blog }) {
                     <p className="blog__date mb-medium">{blog.date}</p>
                     {renderParagraphs(blog.intro, "blog__text")}
                     {blog.video.url ?
-                        <video src={blog.video.url} className="blog-video mb-medium" controls ></video> : null
+                        <iframe
+                            width="560"
+                            height="315"
+                            src={blog.video.url}
+                            title="YouTube video player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen 
+                            className="blog-video mb-medium"
+                        ></iframe> : null
                     }
 
                     {renderInterview()}

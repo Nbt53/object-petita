@@ -9,6 +9,7 @@ import ImageView from "../views/ImageView";
 import Blogs from "../views/Blogs";
 import BlogView from "../views/BlogView";
 import BlogCreate from "../views/BlogCreate";
+import Login from "../views/Login";
 
 export function Navigator() {
     return (
@@ -23,6 +24,7 @@ export function Navigator() {
             <Route path="/" element={<Portfolio />} />
             <Route path="/blogView/:slug" element={<BlogView />} />
             <Route path="/blogCreate" element={<BlogCreate />} />
+            <Route path="/admin514" element={<Login />} />
         </Routes>
     );
 }
