@@ -33,8 +33,6 @@ export default function RenderBlog({ blog }) {
                     {renderParagraphs(blog.intro, "blog__text")}
                     {blog.video.url ?
                         <iframe
-                            width="560"
-                            height="315"
                             src={blog.video.url}
                             title="YouTube video player"
                             frameBorder="0"

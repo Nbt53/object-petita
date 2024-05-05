@@ -42,8 +42,8 @@
     }
 
     &-video {
-        height: 40vh;
-        width: max-content;
+        height: 30rem;
+        width: 45rem;
         margin: auto;
 
         @include respond(phone-small) {

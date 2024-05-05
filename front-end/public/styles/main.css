@@ -782,9 +782,8 @@ ion-icon {
   }
 }
 .blog-video {
-  height: 40vh;
-  width: -moz-max-content;
-  width: max-content;
+  height: 30rem;
+  width: 45rem;
   margin: auto;
 }
 @media (max-width: 31.25em) {
