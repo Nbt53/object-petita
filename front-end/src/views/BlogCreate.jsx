@@ -131,20 +131,20 @@ export default function BlogCreate() {
             ) : null}
             {!submitting && !submitted ?
                 (<>
-                    <div className="blog">
-                        <form className="blog-container" onSubmit={submit}>
-                            <div className="blog-image">
+                    <div className="blog__form">
+                        <form className="blog__form-container" onSubmit={submit}>
+                            <div className="blog__form-image">
                                 <input type="file" id='img' accept="image/*" onChange={(e) => handleChangeImage(e, setSelectedImage)} />
-                                {selectedImage && <img src={selectedImage} className="blog-image__img" alt="Selected" />}
+                                {selectedImage && <img src={selectedImage} className="blog__form-img" alt="Selected" />}
 
                             </div>
-                            <div className="blog-content">
-                                <input className='form-blog-input blog__title'
+                            <div className="blog__form-content">
+                                <input
                                     name='title'
                                     value={formData.title}
                                     onChange={(e) => handleChangeText(e, formData, setFormData)}
                                 />
-                                <input className='form-blog-input blog__text'
+                                <input
                                     name='slug'
                                     value={formData.slug}
                                     onChange={(e) => handleChangeText(e, formData, setFormData)}
@@ -154,20 +154,20 @@ export default function BlogCreate() {
                                 <BlogContent type='date' name='date' value={formData.date} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={contentRef} />
 
                                 <input type="file" id='video' accept="video/*" onChange={(e) => handleChangeVideo(e, setSelectedVideo)} />
-                                {selectedVideo && <video src={selectedVideo} className="blog-video mb-medium" ></video>}
+                                {selectedVideo && <video src={selectedVideo} className="blog__form-video" ></video>}
 
                                 <div className="blog__interview">
                                     <AdminButton func={() => addInterviewSection(setBlog, blog, questionKey, formData, setQuestionKey)} />
                                     {blog.content.interview.map((section) => {
                                         return (
-                                            <div key={section.key} className="blog__interview-section">
-                                                <BlogContent type='textarea' name={`question`} value={section.question} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={questionRef} />
-                                                <BlogContent type='textarea' name={`answer`} value={section.answer} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={answerRef} />
+                                            <div key={section.key} className="blog__form-interview">
+                                                <div>{section.question}</div>
+                                                <div>{section.answer}</div>
                                                 <ion-icon name="checkmark" style={{ color: 'green' }}></ion-icon>                                            </div>
                                         )
                                     })
                                     }
-                                    <div className="blog__interview-section">
+                                    <div className="blog__form-interview">
                                         <BlogContent type='textarea' name={`question`} value={formData[`question`]} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={questionRef} />
                                         <BlogContent type='textarea' name={`answer`} value={formData[`answer`]} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={answerRef} />
                                         <ion-icon name="close" style={{ color: 'red' }}></ion-icon>

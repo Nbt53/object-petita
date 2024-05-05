@@ -5,7 +5,6 @@ export default function BlogContent({ type, name, value, handleChange, contentRe
         <InputTag
             ref={type === 'textarea' ? contentRef : null}
             type={type === 'textarea' ? undefined : type}
-            className={`form-blog-input blog__${name}`}
             name={name}
             value={value}
             onChange={handleChange}
