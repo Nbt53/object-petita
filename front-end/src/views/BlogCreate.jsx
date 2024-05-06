@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDynamicHeightField } from '../../public/js/hooks/DynamicHeightField';
 import BlogContent from '../components/BlogContent';
-import { addInterviewSection, handleChangeImage, handleChangeText, handleChangeVideo } from '../../public/js/BlogFunctions';
+import { addInterviewSection, handleChangeImage, handleChangeText } from '../../public/js/BlogFunctions';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { db, storage } from '../config/Firebase';
 import { addDoc, collection } from 'firebase/firestore';
@@ -23,7 +23,6 @@ export default function BlogCreate() {
 
     !admin && !loading && navigate('/');
     const [selectedImage, setSelectedImage] = useState(null);
-    const [selectedVideo, setSelectedVideo] = useState(null);
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [slugError, setSlugError] = useState('');
@@ -51,6 +50,7 @@ export default function BlogCreate() {
         image: { key: 1, url: '', alt: 'Blog Image', path: '' },
         title: { key: 2, title: 'Title' },
         intro: { key: 3, intro: 'Just some text' },
+        video: '',
         content: {
             key: 4,
             interview: []
@@ -71,11 +71,9 @@ export default function BlogCreate() {
         setSubmitting(true);
 
         const imgInput = document.getElementById('img').files[0] || null;
-        const vidInput = document.getElementById('video').files[0] || null;
         let imgURL = null;
-        let vidURL = null;
+
         let imageFullPath = null;
-        let videoFullPath = null;
 
         if (imgInput) {
             const imageRef = ref(storage, `blog/${imgInput.name}`);
@@ -83,15 +81,9 @@ export default function BlogCreate() {
             imgURL = await getDownloadURL(imageRef);
             imageFullPath = imageRef.fullPath;
         }
-        if (vidInput) {
-            const videoRef = ref(storage, `blog/${vidInput.name}`);
-            await uploadBytes(videoRef, vidInput);
-            vidURL = await getDownloadURL(videoRef);
-            videoFullPath = videoRef.fullPath;
-        }
         const id = Math.random().toString(36).substring(7);
         // eslint-disable-next-line no-unused-vars
-        const { question, answer, intro, outro, image, video, ...restFormData } = formData;
+        const { question, answer, intro, outro, image, ...restFormData } = formData;
         const updatedBlog = {
             ...restFormData,
             content: {
@@ -103,7 +95,6 @@ export default function BlogCreate() {
             },
             id: id,
             image: { url: imgURL, path: imageFullPath },
-            video: { url: vidURL, path: videoFullPath },
             intro: intro.split('\n'),
             outro: outro.split('\n')
         }
@@ -153,8 +144,20 @@ export default function BlogCreate() {
                                 <BlogContent type='textarea' name='intro' value={formData.intro} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={contentRef} />
                                 <BlogContent type='date' name='date' value={formData.date} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={contentRef} />
 
-                                <input type="file" id='video' accept="video/*" onChange={(e) => handleChangeVideo(e, setSelectedVideo)} />
-                                {selectedVideo && <video src={selectedVideo} className="blog__form-video" ></video>}
+                                <input type="text" id='video' name='video' onChange={(e) => handleChangeText(e, formData, setFormData)} />
+
+                                {formData.video &&
+                                    <iframe
+                                        className='blog_form-video'
+                                        src={formData.video}
+                                        title="YouTube video player"
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerPolicy="strict-origin-when-cross-origin"
+                                        allowFullScreen>
+
+                                    </iframe>
+                                }
 
                                 <div className="blog__interview">
                                     <AdminButton func={() => addInterviewSection(setBlog, blog, questionKey, formData, setQuestionKey)} />

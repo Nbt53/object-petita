@@ -31,9 +31,9 @@ export default function RenderBlog({ blog }) {
                     <h3 className="blog__title">{blog.title}</h3>
                     <p className="blog__date mb-medium">{blog.date}</p>
                     {renderParagraphs(blog.intro, "blog__text")}
-                    {blog.video.url ?
+                    {blog.video ?
                         <iframe
-                            src={blog.video.url}
+                            src={blog.video}
                             title="YouTube video player"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
