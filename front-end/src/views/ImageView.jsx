@@ -79,14 +79,14 @@ export default function ImageView() {
                                     setMainImage, documentId,
                                     newImages, setNewImages,
                                     newImagesUrl, setNewImagesURL)}
-                                {/* <input
+                                <input
                                     type="number"
                                     id="price"
                                     name="price"
                                     className="imageView__price"
                                     value={formPrice}
                                     onChange={handlePriceChange}
-                                /> */}
+                                />
                                 <textarea
                                     type="text"
                                     id="description"
@@ -101,7 +101,7 @@ export default function ImageView() {
                                 <h3 className="imageView__title">{docData.name}</h3>
                                 {portfolio.renderImages(docData, adminMode, setMainImage)}
                                 {textWithParagraphs}
-                                <p className="imageView__price mb-medium">£{docData.price}</p>
+                                {/* <p className="imageView__price mb-medium">£{docData.price}</p> */}
                             </>
                         }
                         {adminMode ? <div className="imageView-admin">
