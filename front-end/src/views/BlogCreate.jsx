@@ -51,6 +51,7 @@ export default function BlogCreate() {
         title: { key: 2, title: 'Title' },
         intro: { key: 3, intro: 'Just some text' },
         video: '',
+        videoDescription: 'Video Description',
         content: {
             key: 4,
             interview: []
@@ -144,7 +145,7 @@ export default function BlogCreate() {
                                 <BlogContent type='textarea' name='intro' value={formData.intro} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={contentRef} />
                                 <BlogContent type='date' name='date' value={formData.date} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={contentRef} />
 
-                                <input type="text" id='video' name='video' onChange={(e) => handleChangeText(e, formData, setFormData)} />
+                                <input type="text" id='video' name='video' placeholder='youtube link' onChange={(e) => handleChangeText(e, formData, setFormData)} />
 
                                 {formData.video &&
                                     <iframe
@@ -158,7 +159,7 @@ export default function BlogCreate() {
 
                                     </iframe>
                                 }
-
+                                <BlogContent type='textarea' name='videoDescription' value={formData.videoDescription} handleChange={(e) => handleChangeText(e, formData, setFormData)} contentRef={contentRef} />
                                 <div className="blog__interview">
                                     <AdminButton func={() => addInterviewSection(setBlog, blog, questionKey, formData, setQuestionKey)} />
                                     {blog.content.interview.map((section) => {

@@ -79,14 +79,14 @@ export default function ImageView() {
                                     setMainImage, documentId,
                                     newImages, setNewImages,
                                     newImagesUrl, setNewImagesURL)}
-                                <input
+                                {/* <input
                                     type="number"
                                     id="price"
                                     name="price"
                                     className="imageView__price"
                                     value={formPrice}
                                     onChange={handlePriceChange}
-                                />
+                                /> */}
                                 <textarea
                                     type="text"
                                     id="description"

@@ -15,7 +15,7 @@ export default function Login() {
     return (
         <div>
             <h1>Login</h1>
-            <NavLink to="#" activeClassName='no-underline' onClick={handleSignIn}><ion-icon name="person-outline"></ion-icon></NavLink>}
+            <NavLink to="#" activeClassName='no-underline' onClick={handleSignIn}><ion-icon name="person-outline"></ion-icon></NavLink>
 
         </div>
     )
